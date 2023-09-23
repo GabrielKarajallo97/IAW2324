@@ -2,6 +2,6 @@
 ## Implantación de Aplicaciones Web
 Vamos a intalar las principales aplicaciones con las que vamos a trabajar este curso:
 - **Visual Studio Code**
-- *Git*
+- *Git*.
 - [Docker] (https://www.docker.com/)
-- VirtualBox
+- VirtualBox.
