@@ -5,3 +5,4 @@ Vamos a intalar las principales aplicaciones con las que vamos a trabajar este c
 - *Git*.
 - [Docker](https://www.docker.com/).
 - VirtualBox.
+- PHP
