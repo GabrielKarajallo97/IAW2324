@@ -3,5 +3,5 @@
 Vamos a intalar las principales aplicaciones con las que vamos a trabajar este curso:
 - **Visual Studio Code**
 - *Git*.
-- [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/).
 - VirtualBox.
