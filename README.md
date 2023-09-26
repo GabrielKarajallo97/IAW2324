@@ -4,4 +4,4 @@ Vamos a intalar las principales aplicaciones con las que vamos a trabajar este c
 - **Visual Studio Code**
 - *Git*.
 - [Docker](https://www.docker.com/)
-- VirtualBox.
+- VirtualBox
