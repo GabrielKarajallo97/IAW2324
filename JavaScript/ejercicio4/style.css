@@ -11,17 +11,25 @@ body {
     background-color:#e0c8a3;
     border-radius: 30px;
     padding: 50px;
+    box-shadow: 10px 10px 10px rgb(150, 92, 25);
 }
 h1{
     font-family: 'Anton', sans-serif;
+    color: rgb(150, 92, 25);
 }
-
+p{
+    font-family: 'Anton', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
 button{
     height: 50px;
     width: 100px;
     border-radius: 50px;
     background-color:bisque;
-    border: 0px
+    border: 0px;
+    font-family: 'Anton', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    
 }
 
 
