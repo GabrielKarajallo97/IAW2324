@@ -1,5 +1,5 @@
 function generarNumeroAleatorio() {
-    return Math.floor(Math.random() * 6); // Genera un número aleatorio entre 0 y 5
+    return Math.floor(Math.random() * 6);
 }
 
 function comprobarAdivinanza() {

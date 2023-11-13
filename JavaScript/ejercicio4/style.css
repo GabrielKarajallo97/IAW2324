@@ -2,4 +2,26 @@ body {
     display:inline-flex ;
     align-items: center;
     height: 100vh;
+    background-color: beige;
+    font-family: Arial, Helvetica, sans-serif;
 }
+.container{
+    margin-left: 70vh;
+    text-align: center;
+    background-color:#e0c8a3;
+    border-radius: 30px;
+    padding: 50px;
+}
+h1{
+    font-family: 'Anton', sans-serif;
+}
+
+button{
+    height: 50px;
+    width: 100px;
+    border-radius: 50px;
+    background-color:bisque;
+    border: 0px
+}
+
+
