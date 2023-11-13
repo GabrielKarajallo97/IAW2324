@@ -1,10 +1,10 @@
 function calcularIMC() {
-    // Obtener los valores de altura y masa ingresados por el usuario
+    
     var alturaCm = parseFloat(document.getElementById("altura").value);
     var masaKg = parseFloat(document.getElementById("masa").value);
 
   
-    var alturaM = alturaCm / 100; // Convertir altura a metros
+    var alturaM = alturaCm / 100; 
     var imc = masaKg / (alturaM * alturaM);
 
     // Mostrar el resultado del IMC
