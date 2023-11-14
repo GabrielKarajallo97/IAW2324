@@ -1,5 +1,7 @@
 body { 
     position: absolute; 
+    text-align: center;
+    top: 10rem;
 }
 .container{
     display: inline-block;
@@ -7,6 +9,5 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: red;
     
 }
