@@ -2,7 +2,7 @@ function generarNumeroAleatorio() {
     return Math.floor(Math.random() * 6);
 }
 
-function comprobarAdivinanza() {
+function adivinar() {
     var numeroAdivinanza = parseInt(document.getElementById("adivina").value);
     var numeroAleatorio = generarNumeroAleatorio();
 
