@@ -21,6 +21,11 @@ p{
     font-family: 'Anton', sans-serif;
     font-family: 'Open Sans', sans-serif;
 }
+input{
+    border-radius: 50px;
+    border: 0px;
+    height: 20px;
+}
 button{
     height: 50px;
     width: 100px;
@@ -28,8 +33,7 @@ button{
     background-color:bisque;
     border: 0px;
     font-family: 'Anton', sans-serif;
-    font-family: 'Open Sans', sans-serif;
-    
+    font-family: 'Open Sans', sans-serif;   
 }
 
 
