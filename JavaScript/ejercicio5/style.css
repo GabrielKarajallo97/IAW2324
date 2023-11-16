@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  #messageInput {
+    width: 300px;
+    margin-bottom: 10px;
+  }
+  #messageList {
+    list-style-type: none;
+    padding: 0;
+  }
+  .message {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+    position: relative;
+  }
+  .deleteIcon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: #888;
+  }
