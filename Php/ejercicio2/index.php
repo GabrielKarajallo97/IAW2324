@@ -6,12 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-
-
-    <?php
-       echo "Hola Mundo"; 
+<?php
+        $saludo = "Hola Mundo"; //se declara la variable saludo
+        $php = "desde PHP!!"; //se declara la variable php
+        echo $saludo $php; //imprimimos el contenido de las dos variables 
     ?>
-
-
 </body>
 </html>
