@@ -9,7 +9,7 @@
     <?php
         $saludo = "Hola Mundo"; //se declara la variable saludo
         $php = "desde PHP!!"; //se declara la variable php
-        echo $saludo $php; //imprimimos el contenido de las dos variables 
+        echo $saludo ,$php; //imprimimos el contenido de las dos variables 
     ?>
 </body>
 </html>
