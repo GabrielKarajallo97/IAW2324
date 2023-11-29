@@ -7,7 +7,6 @@
 </head>
 <body>
     <?php
-      
       echo "El nombre del servidor es: " .$_SERVER['SERVER_ADDR']. "<br>" ;
       echo "El navegador es: " .$_SERVER['HTTP_USER_AGENT'] . "<br>";
       
@@ -16,9 +15,6 @@
       }else{
         echo "La url de la pagina previa es: " .$_SERVER['HTTP_REFERER'] . "<br>";
       }
-      
-       
-
     ?>
 </body>
 </html>
