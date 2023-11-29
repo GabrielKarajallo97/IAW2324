@@ -9,8 +9,15 @@
     <?php
       
       echo "El nombre del servidor es: " .$_SERVER['SERVER_ADDR']. "<br>" ;
-      echo "La url de la pagina previa es: " .$_SERVER['HTTP_REFERER'];
+      echo "El navegador es: " .$_SERVER['HTTP_USER_AGENT'] . "<br>";
       
+      if($_SERVER['HTTP_REFERER'] == null){
+        echo "No tiene url previa";
+      }else{
+        echo "La url de la pagina previa es: " .$_SERVER['HTTP_REFERER'] . "<br>";
+      }
+      
+       
 
     ?>
 </body>
