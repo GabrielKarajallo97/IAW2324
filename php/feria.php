@@ -18,8 +18,6 @@
     $diferenciaDias = floor($diferenciaSegundos / (60 * 60 * 24));
 
     echo "<p>Faltan $diferenciaDias días para el inicio de la Feria de abril de 2023.</p>";
-
-    echo = ~$fechaActual;
 ?>
 
 </body>
