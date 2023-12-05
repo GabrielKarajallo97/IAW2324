@@ -9,12 +9,12 @@
     <h1>Calculadora DNI</h1>
     <form id="dni-form">
         <label for="numerodni">Número de DNI (8 dígitos):</label>
-        <input type="text" id="numerodni">
-        <button type="button" onclick="letraDNI()">Calcular Letra</button>
+        <input id="numeroInicial" type="text">
+        <button type="button"  onclick="letraDNI()">Calcular Letra</button>
     </form>
 
-    <div id="resultado"></div>
-
-    <script src="/JavaScript/repaso/ej3/script.js"></script>
+    <div id="resultado">DNI: <span id="dni"></span></div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
