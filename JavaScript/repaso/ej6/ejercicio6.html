@@ -5,38 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div>
+    <div class="contenedor">
+        <h2>Formulario</h2>
         <form action="">
-            <label for="">Nombre</label>
-            <input type="text">
-
-            <label for="">Apellidos</label>
-            <input type="text">
-
-            <label for="">Correo electronico</label>
-            <input type="text">
-
+            <label for="">Nombre</label><span class="span"></span>
+            <input id="nombre" type="text">
+            <br>
+            <label for="">Apellidos</label><span class="span"></span>
+            <input id="apellido" type="text">
+            <br>
+            <label for="">Correo electronico</label><span class="span"></span>
+            <input id="correo" type="text">
+            <br>
             <label for="">Dirección</label>
-            <input type="text">
-
+            <input id="dirección" type="text">
+            <br>
             <label for="">Ciudad</label>
-            <input type="text">
-
+            <input id="ciudad" type="text">
+            <br>
             <label for="">Teléfono</label>
-            <input type="text">
-
-            <label for="">DNI</label>
-            <input type="text">
-
-            <label for="">PIN</label>
-            <input type="text">
-            
-            <label for="">PIN</label>
-            <input type="text">
+            <input id="telefono" type="text">
+            <br>
+            <label for="">DNI</label><span class="span"></span>
+            <input id="dni" type="text">
+            <br>
+            <label for="">PIN</label><span class="span"></span>
+            <input id="pin" type="text">
+            <br>
+            <label  for="">PIN</label><span class="span"></span>
+            <input id="pin2" type="text">
+            <br>    
         </form>
+        <button class="boton" onclick="validarFormulario()">Enviar</button>
     </div>
 
     <script src="script.js"></script>
