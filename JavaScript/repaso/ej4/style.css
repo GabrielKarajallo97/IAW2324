@@ -1,0 +1,63 @@
+body {
+    background-color: #f5f5f5; /* Gris claro */
+}
+.contenedor {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Opcional: centrar el texto dentro del div */
+  }
+  input{
+    margin: 10px;
+  }
+
+  h1{
+    font-family: 'Nova Square', sans-serif;
+  }
+
+  .boton {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3498db; /* Azul */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .contenedor {
+    background-color: #f2f2f2; /* Color de fondo del contenedor */
+    padding: 20px; /* Espaciado interno del contenedor */
+    border: 1px solid #ccc; /* Borde del contenedor */
+    border-radius: 8px; /* Esquinas redondeadas del contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+    width: 300px; /* Ancho del contenedor */
+    text-align: center; /* Alineación del texto dentro del contenedor */
+  }
+  .boton:hover {
+    background-color: #2980b9; /* Cambia de color al pasar el ratón sobre el botón */
+  }
+
+  .input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #3498db; /* Cambia de color cuando el input está enfocado */
+  }
+
+label{
+    font-family: 'Nova Square', sans-serif;
+}
+p{
+    font-family: 'Nova Square', sans-serif;
+}
