@@ -9,9 +9,10 @@ function validarFormulario(){
     const valorPin2 = document.getElementById('pin2').value;
 
     //condicion para que aparezcan los mensajes de error
-    const error = "Este campo es obligatorio";
-    if (valorNombre == '' || valorApellido == '' || valorCorreo == '' ||  valorDni == '' || valorPin == '' || valorPin2 == ''){
-        document.getElementsByClassName("span").textContent = error;
-        
+    if (valorNombre === '' || valorApellido === '' || valorCorreo === '' ||  valorDni === '' || valorPin === '' || valorPin2 === ''){
+        const requeridos = document.getElementsByClassName('span');
+        for (let i = 0; i < requeridos.length; i++) {
+            requeridos[i].textContent = 'Este campo es obligatorio';
+        }
     }
 }
