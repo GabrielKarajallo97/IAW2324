@@ -1,18 +1,17 @@
-function generarNumeroAleatorio() {
-    return Math.floor(Math.random() * 6);
-}
-
-function adivinar() {
-    var numeroAdivinanza = parseInt(document.getElementById("adivina").value);
-    var numeroAleatorio = generarNumeroAleatorio();
-
-    if (numeroAdivinanza >= 0 && numeroAdivinanza <= 5) {
-        if (numeroAdivinanza === numeroAleatorio) {
-            alert("¡Adivinaste el número! El número era " + numeroAleatorio);
-        } else {
-            alert("Lo siento, el número era " + numeroAleatorio + ". Inténtalo de nuevo.");
-        }
-    } else {
-        alert("Por favor, ingresa un número entre 0 y 5.");
+function comprobarNumero(){
+    let numeroAleatorio =  Math.floor(Math.random() * 6);
+    const valorInput = document.getElementById('input').value;
+    const mesanje = document.getElementById('mensaje');
+    console.log(numeroAleatorio);
+    // if(valorInput > numeroAleatorio){
+    //     mensaje.textContent = "El numero no puede ser mayor que 5"
+    // }else if(valorInput < numeroAleatorio){
+    //     mensaje.textContent = "El numero no puede ser menor que 1"
+    // }else 
+    if(valorInput != numeroAleatorio){
+        mensaje.textContent = "No has acertado, el numero era: " + numeroAleatorio;
+    }else{
+        mensaje.textContent = "Bien!! Acertaste!! el numero era: " + numeroAleatorio;
     }
+
 }
