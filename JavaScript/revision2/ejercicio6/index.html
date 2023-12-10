@@ -1,54 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fomulario</title>
-    <link rel="stylesheet" href="/JavaScript/ejercicio6/style.css">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>Formulario</h1>
-    <form action="/my-handling-form-page" method="post">
-        <ul>
-          <li>
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-          <li>
-            <label for="name">Apellido:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-          <li>
-            <label for="mail">Gmail:</label>
-            <input type="email" id="mail" name="user_mail" />
-          </li>
-          <li>
-            <label for="name">Dirección:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-          <li>
-            <label for="name">Ciudad:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-          <li>
-            <label for="number">Teléfono:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-          <li>
-            <label for="name">DNI:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-          <li>
-            <label for="number">PIN:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-          <li>
-            <label for="name">PIN repetido:</label>
-            <input type="text" id="name" name="user_name" />
-          </li>
-        </ul>
-      </form>
-      <button>Alta</button>
-      
+
+    <h2>Formulario</h2>
+
+    <form id="registroForm" onsubmit="return validarFormulario()">
+        <label for="nombre">Nombre*</label>
+        <input type="text" id="nombre" required>
+        <br>
+
+        <label for="apellido">Apellido*</label>
+        <input type="text" id="apellido" required>
+        <br>
+
+        <label for="email">Correo Electrónico*</label>
+        <input type="email" id="email" required>
+        <br>
+
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion">
+        <br>
+
+        <label for="ciudad">Ciudad</label>
+        <input type="text" id="ciudad">
+        <br>
+
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono">
+        <br>
+
+        <label for="dni">DNI*</label>
+        <input type="text" id="dni" required>
+        <br>
+
+        <label for="pin">PIN (8 dígitos)*</label>
+        <input type="password" id="pin" pattern="\d{8}" required>
+        <br>
+
+        <label for="pinRepetido">Repetir PIN*</label>
+        <input type="password" id="pinRepetido" pattern="\d{8}" required>
+        <br>
+
+        <p class="error" id="errorMensaje"></p>
+
+        <input type="submit" value="Registrarse">
+    </form>
+
+    <script src="script.js"></script>
 </body>
 </html>
