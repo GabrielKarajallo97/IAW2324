@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 2</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Conversor de Moneda</h1>
     <form id="formulario">
-        <label for="amount">Cantidad:</label>
-        <input type="text" id="amount" placeholder="Ingrese un valor numérico positivo">
+        <label>Cantidad:</label>
+        <input type="text" id="numero" placeholder="Ingrese un valor numérico positivo">
         <button type="button" onclick="convertidorEuro()">Convertir a Euros</button>
         <button type="button" onclick="convertidorDolar()">Convertir a Dólares</button>
     </form>
-
-    <div id="resultado"></div>
+    <p>Resultado:<span id="resultado_span"></span></p>
 
     <script src="script.js"></script>
 </body>

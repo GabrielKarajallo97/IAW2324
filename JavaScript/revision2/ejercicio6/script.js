@@ -5,7 +5,6 @@ function validarFormulario() {
     var dni = document.getElementById('dni').value;
     var pin = document.getElementById('pin').value;
     var pinRepetido = document.getElementById('pinRepetido').value;
-
   
     if (!nombre || !apellido || !email || !dni || !pin || !pinRepetido) {
         document.getElementById('errorMensaje').innerText = 'Todos los campos marcados con * son requeridos.';
@@ -18,7 +17,6 @@ function validarFormulario() {
         return false;
     }
 
- 
     if (pin !== pinRepetido) {
         document.getElementById('errorMensaje').innerText = 'Los PINS no coinciden.';
         return false;
