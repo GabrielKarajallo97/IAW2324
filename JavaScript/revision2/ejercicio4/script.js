@@ -1,26 +1,27 @@
-function calcularIMC() {
+function calcularImc(){
+    const pesoId = document.getElementById('peso');
+    const pesoValue = pesoId.value;
     
-    var alturaCm = parseFloat(document.getElementById("altura").value);
-    var masaKg = parseFloat(document.getElementById("masa").value);
-
-  
-    var alturaM = alturaCm / 100; 
-    var imc = masaKg / (alturaM * alturaM);
-
-    // Mostrar el resultado del IMC
-    var resultado = "Tu IMC es " + imc.toFixed(2) + ". ";
+    const alturaId = document.getElementById('altura');
+    const alturaValue = alturaId.value/100;
     
+    const imc = pesoValue/Math.pow(alturaValue,2);
 
-    if (imc < 18.5) {
-        resultado += "Peso inferior al normal.";
-    } else if (imc < 24.9) {
-        resultado += "Normal.";
-    } else if (imc < 29.9) {
-        resultado += "Peso superiro al normal.";
-    } else {
-        resultado += "Obesidad.";
+    const resultadoImc = document.getElementById('imcId');
+    resultadoImc.textContent = ' ' +  imc.toFixed(1);
+
+    const inferior = "Peso inferior al normal";
+    const normal = "Peso normal";
+    const superior = "Peso superior al normal";
+    const obesidad = "Obesidad";
+
+    if(imc < 18.5){
+        document.getElementById('spanId').textContent = inferior;
+    }else if(imc == 18.5 || imc < 25.0){
+        document.getElementById('spanId').textContent = normal;
+    }else if(imc == 25.0 || imc < 30.0){
+        document.getElementById('spanId').textContent = superior;
+    }else if(imc >= 30.0){
+        document.getElementById('spanId').textContent = obesidad;
     }
-
-    // Mostrar el resultado en la página
-    document.getElementById("resultado").innerHTML = resultado;
 }

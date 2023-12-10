@@ -1,39 +1,63 @@
 body {
-    display:inline-flex ;
-    align-items: center;
-    height: 100vh;
-    background-color: beige;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #2c2b2b; /* Gris claro */
 }
-.container{
-    margin-left: 70vh;
-    text-align: center;
-    background-color:#e0c8a3;
-    border-radius: 30px;
-    padding: 50px;
-    box-shadow: 10px 10px 10px rgb(150, 92, 25);
-}
-h1{
-    font-family: 'Anton', sans-serif;
-    color: rgb(150, 92, 25);
+.contenedor {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Opcional: centrar el texto dentro del div */
+  }
+  input{
+    margin: 10px;
+  }
+
+  h1{
+    font-family: 'Nova Square', sans-serif;
+  }
+
+  .boton {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3498db; /* Azul */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .contenedor {
+    background-color: #f2f2f2; /* Color de fondo del contenedor */
+    padding: 20px; /* Espaciado interno del contenedor */
+    border: 1px solid #ccc; /* Borde del contenedor */
+    border-radius: 8px; /* Esquinas redondeadas del contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+    width: 300px; /* Ancho del contenedor */
+    text-align: center; /* Alineación del texto dentro del contenedor */
+  }
+  .boton:hover {
+    background-color: #2980b9; /* Cambia de color al pasar el ratón sobre el botón */
+  }
+
+  .input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #3498db; /* Cambia de color cuando el input está enfocado */
+  }
+
+label{
+    font-family: 'Nova Square', sans-serif;
 }
 p{
-    font-family: 'Anton', sans-serif;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Nova Square', sans-serif;
 }
-input{
-    border-radius: 50px;
-    border: 0px;
-    height: 20px;
-}
-button{
-    height: 50px;
-    width: 100px;
-    border-radius: 50px;
-    background-color:bisque;
-    border: 0px;
-    font-family: 'Anton', sans-serif;
-    font-family: 'Open Sans', sans-serif;   
-}
-
-
