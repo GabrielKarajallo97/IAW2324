@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo Examen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Formulario de contacto</h2>
+    <form id="formulario">
+            <label  for="">Asunto*:</label>
+            <input id="asunto" type="number"><span class="color" id="errorAsunto"></span>
+            <br>
+            <label  for="">DNI/NIE*:</label>
+            <input id="dni" type="text"><span class="color" id="errorDni"></span>
+            <br>
+            <label for="">Nombre*:</label>
+            <input  id="nombre" type="text"><span class="color" id="errorNombre"></span>
+            <br>
+            <label  for="">Primero apellido*:</label>
+            <input id="apellido1" type="text"><span class="color" id="errorApellido1"></span>
+            <br>
+            <label for="">Segundo apellido</label>
+            <input  id="apellido2" type="text">
+            <br>
+            <label  for="">Fecha de nacimiento: (dd7mm/yyyy)*:</label>
+            <input id="nacimiento" type="text"><span class="rojo" id="errorNacimiento"></span>
+            <br>
+            <label  for="">Teléfono de contacto*:</label>
+            <input id="telefono" type="text"><span class="color" id="errorTelefono"></span>
+            <br>
+            <label for="">Correo electronico</label>
+            <input  id="correo" type="email" name="email">
+            <br>
+            <label  for="">Domicilio*:</label>
+            <input id="domicilio" type="text"><span class="color" id="errorDomicilio"></span>
+            <br>
+            <label  for="">Código postal*:</label>
+            <input id="codigo" type="text"><span class="color" id="errorCodigo"></span>
+            <br>
+            <label  for="">Municipio*:</label>
+            <input id="municipio" type="number"><span class="color" id="errorMunicipio"></span>
+            <br>
+            <label for="">Oficina*:</label>
+            <input  id="oficina" type="number"><span class="color" id="errorOficina"></span>
+            <br>
+            <label for="">Información requerida*:</label>
+            <input  id="informacion" style="height: 100px; width: 400px;" type="text"><span class="color" id="errorInformacion"></span>
+            <br>
+
+            <label for="">Fichero Anexo I (máximo 2MB):</label><input type="file">
+            <br>
+            <label for="">Fichero Anexo II (máximo 2MB):</label><input type="file"> 
+            <br>
+            <br>
+            <br>
+            <input type="checkbox"><label class="check" for="">He leido y acepto la <span id="politica">pólitica de datos y normas uso *</span></label><span class="span"></span>
+            <br>
+            <br>
+    </form>
+    <button onclick="validarFormulario()" type="reset">Enviar</button>
+    <script src="script.js"></script>
+</body>
+</html>

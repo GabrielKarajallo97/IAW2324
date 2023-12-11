@@ -1,0 +1,29 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+form {
+    max-width: 100%;
+    margin-top: 10px;
+    text-align: left;
+}
+
+form label {
+    display: inline-block;
+    width: 300px; /* Ajusta el ancho según tu necesidad */
+    text-align: left;
+}
+
+form input {
+    margin-bottom: 10px; /* Espacio entre los campos de entrada */
+    height: 20px;
+    width: 200px;
+}
+.color{
+    margin-left: 15px;
+    width: 200px;
+    color: red;
+}
+.check{
+    width: 500px;
+}

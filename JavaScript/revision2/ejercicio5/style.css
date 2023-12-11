@@ -16,6 +16,10 @@ body {
     margin-bottom: 5px;
     position: relative;
   }
+  .span{
+   width: 100%;
+    color: red;
+  }
   .deleteIcon {
     position: absolute;
     top: 5px;
