@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Latitud y Longitud</title>
+</head>
+<body>
+    <h2>Obtener Latitud y Longitud de una Ciudad</h2>
+    <label for="cityInput">Ingrese el nombre de la ciudad:</label>
+    <input type="text" id="cityInput">
+    <button onclick="getCoordinates()">Obtener Coordenadas</button>
+
+    <div id="result"></div>
+
+    <script>
+        function getCoordinates() {
+            var cityName = document.getElementById('cityInput').value;
+
+            // Reemplaza 'TU_API_KEY' con tu propia clave de API de OpenWeatherMap
+            var apiKey = 'f52831dffe4b051553d91e46e9e6c0d9';
+            var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Extraer la latitud y longitud de la respuesta JSON
+                    var latitud = data.coord.lat;
+                    var longitud = data.coord.lon;
+
+                    // Mostrar las coordenadas en el elemento con id "result"
+                    document.getElementById('result').innerHTML = 'Latitud: ' + latitud + '<br>Longitud: ' + longitud;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = 'Error al obtener las coordenadas.';
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
