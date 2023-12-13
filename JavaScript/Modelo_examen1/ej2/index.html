@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Latitud y Longitud</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <form id="cityForm">
+        <label for="cityInput">Ingrese el nombre de la ciudad:</label>
+        <input type="text" id="cityInput" required>
+        <button type="submit">Obtener Latitud y Longitud</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+       $(document).ready(function() {
+    $("#cityForm").submit(function(event) {
+        event.preventDefault();
+
+        //Mi apikey
+        var apiKey = 'f52831dffe4b051553d91e46e9e6c0d9';
+        var city = $("#cityInput").val();
+
+        // Solicitud ajax
+        $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`,
+            method: 'GET',
+            success: function(data) {
+                // Extrae la latitud y longitud de la respuesta
+                var latitude = data.coord.lat;
+                var longitude = data.coord.lon;
+
+                // Muestra la latitud y longitud en el elemento con ID 'result'
+                $("#result").html(`<p>Latitud: ${latitude}</p><p>Longitud: ${longitude}</p>`);
+            },
+            error: function(error) {
+                // Maneja los errores, por ejemplo, ciudad no encontrada
+                $("#result").html(`<p>Error: ${error.responseJSON.message}</p>`);
+            }
+        });
+    });
+});
+
+    </script>
+
+</body>
+</html>

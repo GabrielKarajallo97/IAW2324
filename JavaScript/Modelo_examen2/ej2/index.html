@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Libros</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<h1>Consulta de Libros</h1>
+
+<!-- Input para el ID del libro -->
+<label for="bookId">ID del libro:</label>
+<input type="number" id="bookId" placeholder="Ingrese el ID del libro">
+
+<!-- Botón para ver el catálogo -->
+<button id="viewCatalog">Ver Catálogo</button>
+
+<!-- Botón para consultar por ID del libro -->
+<button id="searchById">Consultar por ID libro</button>
+
+<!-- Contenedor para mostrar la información del libro -->
+<div id="bookInfo"></div>
+
+<script>
+$(document).ready(function() {
+    // URL base de la API de GuteDex
+    const apiUrl = "https://gutendex.com/books";
+
+    // Función para obtener y mostrar información del catálogo
+    $("#viewCatalog").click(function() {
+        $.ajax({
+            url: apiUrl,
+            method: "GET",
+            success: function(data) {
+                displayBookList(data);
+            },
+            error: function(error) {
+                console.log("Error al obtener el catálogo:", error);
+            }
+        });
+    });
+
+    // Función para consultar por ID de libro
+    $("#searchById").click(function() {
+        // Obtener el ID del libro ingresado por el usuario
+        const bookId = $("#bookId").val();
+
+        // Validar que el ID sea un número positivo
+        if (bookId > 0) {
+            // Construir la URL para obtener detalles del libro por ID
+            const bookDetailsUrl = `${apiUrl}/${bookId}`;
+
+            // Realizar la solicitud AJAX para obtener detalles del libro
+            $.ajax({
+                url: bookDetailsUrl,
+                method: "GET",
+                success: function(data) {
+                    displayBookDetails(data);
+                },
+                error: function(error) {
+                    console.log("Error al obtener detalles del libro:", error);
+                }
+            });
+        } else {
+            alert("Ingrese un ID de libro válido (número positivo).");
+        }
+    });
+
+    // Función para mostrar la lista de libros
+    function displayBookList(bookList) {
+        let catalogInfo = "<h2>Catálogo de Libros</h2><ul>";
+
+        for (const book of bookList.books) {
+            catalogInfo += `<li>${book.title} - ${book.authors.join(", ")}</li>`;
+        }
+
+        catalogInfo += "</ul>";
+        $("#bookInfo").html(catalogInfo);
+    }
+
+    // Función para mostrar los detalles de un libro
+    function displayBookDetails(bookDetails) {
+        const bookInfo = `<h2>${bookDetails.title}</h2>
+                          <p>Autor: ${bookDetails.authors.join(", ")}</p>
+                          <img src="${bookDetails.formats['text/plain;charset=utf-8']}" alt="Portada del libro">
+                          <p><a href="${bookDetails.formats['text/plain;charset=utf-8']}">Descargar en formato txt</a></p>
+                          <p>Número de Descargas: ${bookDetails.download_count}</p>`;
+
+        $("#bookInfo").html(bookInfo);
+    }
+});
+</script>
+
+</body>
+</html>
