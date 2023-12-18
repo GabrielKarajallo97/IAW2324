@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="e">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport">
     <title>Formulario de Reserva de Habitación</title>
-    <link rel="stylesheet" href="">
 </head>
 <body>
 <?php
@@ -18,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fechaInicio = $_POST['fecha_inicio'];
     $fechaFin = $_POST['fecha_fin'];
 
-    // Validar que los campos obligatorios no estén vacíos
+    
     if (!empty($nombre) && !empty($apellidos) && !empty($email) && !empty($dni) && !empty($tipoHabitacion)) {
         // Calcular el precio según el tipo de habitación
         $precio = 0;
@@ -31,15 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
             case 'doble':
                 $precio = 80;
-                $imagen = '/wordpress/php/hab0.jpg'; 
+                $imagen = 'hab0.jpg'; 
                 break;
             case 'triple':
                 $precio = 140;
-                $imagen = '/wordpress/php/hab2.jpg'; 
+                $imagen = 'hab2.jpg'; 
                 break;
             case 'suite':
                 $precio = 180;
-                $imagen = '/wordpress/php/hab3.jpg'; 
+                $imagen = 'hab3.jpg'; 
                 break;
         }
 
