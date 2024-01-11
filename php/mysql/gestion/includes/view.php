@@ -5,7 +5,7 @@
     <table class="table table-striped table-bordered table-hover">
       <thead class="table-dark">
         <tr>
-              <th scope="col">ID</th>
+              <th  scope="col">ID</th>
               <th  scope="col">Planta</th>
               <th  scope="col">Aula</th>
               <th  scope="col">Descripción</th>
