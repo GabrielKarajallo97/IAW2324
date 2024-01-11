@@ -1,8 +1,8 @@
 <?php include "header.php" ?>
 <div class="container mt-5">
-    <h1 class="text-center"> Gestión simple de incidencias</h1>
+    <h1 class="text-center"> Gestión de incidencias</h1>
         <p class="text-center">
-            Ejemplo sin uso de cookies ni sesiones para implementar un CRUD en PHP con MySQL
+          I.E.S ANTONIO MACHADO
         </p>
   <div class="container">
     <form action="includes/home.php" method="post">

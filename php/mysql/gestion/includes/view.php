@@ -31,8 +31,8 @@
                     $aula = $row['aula'];         
                     $descripcion = $row['descripcion'];        
                     $fecha_alta = $row['fecha_alta'];        
-                    $fecha_rev = $row['fecha_rev'];        
-                    $fecha_sol = $row['fecha_sol'];        
+                    $fecha_revision = $row['fecha_revision'];        
+                    $fecha_resolucion = $row['fecha_resolucion'];        
                     $comentario = $row['comentario'];
 
                         echo "<tr >";
@@ -41,8 +41,8 @@
                         echo " <td > {$aula}</td>";
                         echo " <td >{$descripcion} </td>"; 
                         echo " <td >{$fecha_alta} </td>";
-                        echo " <td >{$fecha_rev} </td>";
-                        echo " <td >{$fecha_sol} </td>";
+                        echo " <td >{$fecha_revision} </td>";
+                        echo " <td >{$fecha_resolucion} </td>";
                         echo " <td >{$comentario} </td>";
                         echo " </tr> ";
                   }

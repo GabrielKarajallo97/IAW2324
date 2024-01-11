@@ -17,8 +17,8 @@
           $aula = $row['aula'];         
           $descripcion = $row['descripcion'];        
           $fecha_alta = $row['fecha_alta'];        
-          $fecha_rev = $row['fecha_rev'];        
-          $fecha_sol = $row['fecha_sol'];        
+          $fecha_revsion = $row['fecha_revision'];        
+          $fecha_resolucion = $row['fecha_resolucion'];        
           $comentario = $row['comentario'];
         }
  
@@ -28,10 +28,10 @@
       $aula = htmlspecialchars($_POST['aula']);
       $descripcion = htmlspecialchars($_POST['descripcion']);
       $fecha_alta = htmlspecialchars($_POST['fecha_alta']);
-      $fecha_rev = htmlspecialchars($_POST['fecha_rev']);
-      $fecha_sol = htmlspecialchars($_POST['fecha_sol']);
+      $fecha_revision = htmlspecialchars($_POST['fecha_revision']);
+      $fecha_resolucion = htmlspecialchars($_POST['fecha_resolucion']);
       $comentario = htmlspecialchars($_POST['comentario']);
-      $query = "UPDATE incidencias SET planta = '{$planta}' , aula = '{$aula}' , descripcion = '{$descripcion}', fecha_alta = '{$fecha_alta}', fecha_rev = '{$fecha_rev}', fecha_sol = '{$fecha_sol}', comentario = '{$comentario}' WHERE id = {$id}";
+      $query = "UPDATE incidencias SET planta = '{$planta}' , aula = '{$aula}' , descripcion = '{$descripcion}', fecha_alta = '{$fecha_alta}', fecha_revision = '{$fecha_revision}', fecha_resolucion = '{$fecha_resolucion}', comentario = '{$comentario}' WHERE id = {$id}";
       $incidencia_actualizada = mysqli_query($conn, $query);
       if (!$incidencia_actualizada)
         echo "Se ha producido un error al actualizar la incidencia.";
@@ -60,12 +60,12 @@
         <input type="date" name="fecha_alta" class="form-control" value="<?php echo $fecha_alta  ?>">
       </div>
       <div class="form-group">
-        <label for="fecha_rev" >Fecha revisión</label>
-        <input type="date" name="fecha_rev" class="form-control" value="<?php echo $fecha_rev  ?>">
+        <label for="fecha_revision" >Fecha revisión</label>
+        <input type="date" name="fecha_revision" class="form-control" value="<?php echo $fecha_revision  ?>">
       </div>
       <div class="form-group">
-        <label for="fecha_sol" >Fecha solución</label>
-        <input type="date" name="fecha_sol" class="form-control" value="<?php echo $fecha_sol  ?>">
+        <label for="fecha_resolucion" >Fecha solución</label>
+        <input type="date" name="fecha_resolucion" class="form-control" value="<?php echo $fecha_resolucion  ?>">
       </div>
       <div class="form-group">
         <label for="comentario" >Comentario</label>

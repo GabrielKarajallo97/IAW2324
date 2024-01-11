@@ -7,10 +7,10 @@
         $descripcion = htmlspecialchars($_POST['descripcion']);
         $comentario = htmlspecialchars($_POST['comentario']);
         $fecha_alta = htmlspecialchars($_POST['fecha_alta']);
-        $fecha_rev = htmlspecialchars($_POST['fecha_rev']);
-        $fecha_sol = htmlspecialchars($_POST['fecha_sol']);
+        $fecha_revision = htmlspecialchars($_POST['fecha_revision']);
+        $fecha_resolucion = htmlspecialchars($_POST['fecha_resolucion']);
       
-        $query= "INSERT INTO incidencias(planta, aula, descripcion, fecha_alta, fecha_rev, fecha_sol, comentario) VALUES('{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_rev}','{$fecha_sol}','{$comentario}')";
+        $query= "INSERT INTO incidencias(planta, aula, descripcion, fecha_alta, fecha_revision, fecha_resolucion, comentario) VALUES('{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_revision}','{$fecha_resolucion}','{$comentario}')";
         $resultado = mysqli_query($conn,$query);
     
           if (!$resultado) {
@@ -42,12 +42,12 @@
         <input type="date" name="fecha_alta"  class="form-control">
       </div>
       <div class="form-group">
-        <label for="fecha_rev" class="form-label">Fecha Revisión</label>
-        <input type="date" name="fecha_rev"  class="form-control">
+        <label for="fecha_revision" class="form-label">Fecha Revisión</label>
+        <input type="date" name="fecha_revision"  class="form-control">
       </div>
       <div class="form-group">
-        <label for="fecha_sol" class="form-label">Fecha Solución</label>
-        <input type="date" name="fecha_sol"  class="form-control">
+        <label for="fecha_resolucion" class="form-label">Fecha Solución</label>
+        <input type="date" name="fecha_resolucion"  class="form-control">
       </div>
       <div class="form-group">
         <label for="comentario" class="form-label">Comentario</label>
