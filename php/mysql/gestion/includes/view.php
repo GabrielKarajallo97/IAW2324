@@ -21,7 +21,7 @@
             <?php
               if (isset($_GET['incidencia_id'])) {
                   $incidenciaid = htmlspecialchars($_GET['incidencia_id']); 
-                  $query="SELECT * FROM incidencias WHERE id = {$incidenciaid} LIMIT 1";  
+                  $query="SELECT * FROM incidencia WHERE id = {$incidenciaid} LIMIT 1";  
                   $vista_incidencias= mysqli_query($conn,$query);            
 
                   while($row = mysqli_fetch_assoc($vista_incidencias))

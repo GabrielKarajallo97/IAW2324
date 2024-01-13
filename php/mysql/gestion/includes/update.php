@@ -7,7 +7,7 @@
       $incidenciaid = htmlspecialchars($_GET['incidencia_id']); 
     }
       
-      $query="SELECT * FROM incidencias WHERE id = $incidenciaid ";
+      $query="SELECT * FROM incidencia WHERE id = $incidenciaid ";
       $vista_incidencias= mysqli_query($conn,$query);
 
       while($row = mysqli_fetch_assoc($vista_incidencias))

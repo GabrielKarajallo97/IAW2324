@@ -22,7 +22,7 @@
               <tr>
  
           <?php
-            $query="SELECT * FROM incidencias";               
+            $query="SELECT * FROM incidencia";               
             $vista_incidencias= mysqli_query($conn,$query);
 
             while($row= mysqli_fetch_assoc($vista_incidencias)){
