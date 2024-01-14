@@ -21,7 +21,7 @@
   </div>
 </div>
 <div class="registrar">
-  <p>¿No tienes cuenta? <a href="">Registrate</a></p>
+  <p class="text-center">¿No tienes cuenta? <a href="">Registrate</a></p>
 </div>
 
 
@@ -147,7 +147,7 @@ if ($_POST) {
     padding: 30px;
     border-radius: 10px;
     /* Bordes redondeados */
-    box-shadow: 20px 60px 50px rgba(1, 1, 1, 0.3);
+    box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.3);
     margin: 20px;
     background-color: #f3f4f5;
     position: absolute;
@@ -196,6 +196,28 @@ if ($_POST) {
     background-color: #b2bfcf;
     border: 0px;
     padding: 10px;
+    font-weight: bold;
+  }
+
+  /*---------Registrar-----------*/
+  .registrar{
+    background-color: #f3f4f5;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 20px 60px 50px rgba(1, 1, 1, 0.3);
+    margin: 20px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .registrar a{
     font-weight: bold;
   }
 </style>
