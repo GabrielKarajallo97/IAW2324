@@ -1,5 +1,6 @@
 <!-- Header -->
 <?php include "../header.php" ?>
+<?php  session_start(); ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
@@ -19,12 +20,14 @@
     </div>
   </div>
 </nav>
-<h1 class="text-center">Bienvenido, (usuario)</h1>
-
-
+<h1 class="text-center">¡Bienvenido
+  <?php
+   echo $_SESSION["user"] . "!";
+  ?>
+</h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
-    <thead class="nombre-tabla">
+    <thead class="table-dark">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Planta</th>
@@ -62,9 +65,9 @@
           echo " <td >{$fecha_revision} </td>";
           echo " <td >{$fecha_resolucion} </td>";
           echo " <td >{$comentario} </td>";
-          echo " <td class='text-center'> <a href='view.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i></a> </td>";
-          echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i></a> </td>";
-          echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i></a> </td>";
+          echo " <td class='text-center'> <a href='view.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i>  </a> </td>";
+          echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
+          echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
         }
         ?>
@@ -72,13 +75,11 @@
     </tbody>
   </table>
 </div>
-<div class=" text-center mt-5">
+<div class="container2 text-center mt-5">
   <a href="../index.php" class="btn btn-warning mt-5"> Volver </a>
   <div>
 
-
-
-    <style>
+  <style>
       nav {
         position: absolute;
         left: 50%;
@@ -126,14 +127,10 @@
     position: absolute;
     top: 5%;
 }
-.nav-item a{
-  color:  #fff;
-  border: 0px;
-  font-size: 1.2rem;
-  padding: 10px;
-  margin: 10px;
-}
-
+      .nav-item a{
+        color: #fff;
+        border: 0px;
+      }
       /*------Tabla--------*/
       .nombre-tabla {
         border-style: none;
@@ -186,4 +183,5 @@
         border: 0px;
       }
     </style>
+
     <?php include "../footer.php" ?>
