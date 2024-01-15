@@ -1,15 +1,15 @@
-<?php
-$servername = "sql311.thsite.top";
-$username = "thsi_35760646";
-$password = "?Qy3?f1l";
-$bd = "thsi_35760646_bdpruebas";
 
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=$bd", $username, $password);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "Conectado correctamente a $servername con usuario $username y contraseña $password";
-} catch(PDOException $e) {
-  echo "Conexión fallida: " . $e->getMessage();
+<?php
+$servername = "gabrielkarajallo.thsite.top";
+$username = "gabriel";
+$password = "1234";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Conexión fallida: " . $conn->connect_error);
 }
+echo "Conectado correctamente";
 ?>
