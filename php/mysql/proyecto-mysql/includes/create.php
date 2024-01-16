@@ -14,12 +14,10 @@ if (isset($_POST['crear'])) {
   $resultado = mysqli_query($conn, $query);
 
   if (!$resultado) {
-  echo "Algo ha ido mal añadiendo la incidencia: ". mysqli_error($conn);
+    echo "Algo ha ido mal añadiendo la incidencia: " . mysqli_error($conn);
+  } else {
+    echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
   }
-  else
-  {
-  echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
-  }         
 }
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -28,14 +26,14 @@ if (isset($_POST['crear'])) {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="create.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Inicio </a>
+          <a href="home.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Añadir
+          <a href="create.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Administración</a>
+          <a href="create.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
       </ul>
     </div>
@@ -73,17 +71,15 @@ if (isset($_POST['crear'])) {
       <label for="comentario" class="form-label">Comentario</label>
       <input type="text" name="comentario" class="form-control">
     </div>
-    <div class="form-group">
+    <div class="form-group boton">
       <button type="submit" name="crear" class="btn btn-primary mt-2">Añadir</button>
     </div>
   </form>
 </div>
-<div class="container2 text-center mt-5">
-  <a href="home.php" class="btn btn-warning mt-5"> Volver </a>
-  <div>
 
-  <style>
-    body{
+
+    <style>
+      body {
         display: block;
         justify-content: center;
         align-items: center;
@@ -96,17 +92,25 @@ if (isset($_POST['crear'])) {
         background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -ms-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -ms-linear-gradient(-45deg, #670d10 0%, #092756 100%);
         background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1)
-    }
-    
-     /*----------NAV--------------------*/
-     .navbar{
-    position: absolute;
-    top: 5%;
-}
-      .nav-item a{
+      }
+
+      /*----------NAV--------------------*/
+      nav {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .navbar {
+        position: absolute;
+        top: 5%;
+      }
+
+      .nav-item a {
         color: #fff;
         border: 0px;
+        margin-right: 10px;
       }
+
       /*-----------Contenedor--------------*/
       .container {
         max-width: 400px;
@@ -116,24 +120,26 @@ if (isset($_POST['crear'])) {
         border: 0px;
         box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
         position: absolute;
-        top: 50%;
+        top: 47%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
       .container2 {
-    position: absolute;
-    top: 73%;
-    left: 51%;
-    transform: translate(-50%, -50%);
-    height: 5px;
-  }
+        position: absolute;
+        top: 71%;
+        left: 51%;
+        transform: translate(-50%, -50%);
+        height: 5px;
+      }
 
 
-  form{
-    padding: 20px;
-  }
-  /*-------Titulo---------------*/
-  h1 {
+      form {
+        padding: 20px;
+      }
+
+      /*-------Titulo---------------*/
+      h1 {
         font-family: 'Paytone One', sans-serif;
         color: #fff;
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -142,4 +148,13 @@ if (isset($_POST['crear'])) {
         margin-bottom: 20px;
         margin-top: 80px
       }
-  </style>
+
+      /*------BOTON------*/
+      .boton{
+        text-align: center;
+      }
+      .boton button{
+        background-color: #b2bfcf;
+        border: 0px;
+      }
+    </style>

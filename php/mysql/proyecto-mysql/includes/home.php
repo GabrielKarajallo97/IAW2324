@@ -1,20 +1,20 @@
 <!-- Header -->
 <?php include "../header.php" ?>
-<?php  session_start(); ?>
+<?php session_start(); ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="create.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Inicio </a>
+          <a href="home.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Añadir
+          <a href="create.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Administración</a>
+          <a href="create.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
       </ul>
     </div>
@@ -22,12 +22,12 @@
 </nav>
 <h1 class="text-center">¡Bienvenido
   <?php
-   echo $_SESSION["user"] . "!";
+  echo $_SESSION["user"] . "!";
   ?>
 </h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
-    <thead class="table-dark">
+    <thead class="table">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Planta</th>
@@ -79,13 +79,7 @@
   <a href="../index.php" class="btn btn-warning mt-5"> Volver </a>
   <div>
 
-  <style>
-      nav {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
+    <style>
       body {
         display: block;
         justify-content: center;
@@ -123,13 +117,20 @@
       }
 
       /*----------NAV--------------------*/
-      .navbar{
-    position: absolute;
-    top: 5%;
-}
-      .nav-item a{
-        color: #fff;
+      nav {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .navbar {
+        position: absolute;
+        top: 5%;
+      }
+
+      .nav-item a {
         border: 0px;
+        color: #fff;
+        margin-right: 10px;
       }
       /*------Tabla--------*/
       .nombre-tabla {
@@ -141,6 +142,9 @@
 
       .table>thead {
         vertical-align: middle;
+      }
+      thead{
+        background-color: #b2bfcf;
       }
 
       tbody,
