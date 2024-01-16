@@ -37,7 +37,13 @@
         echo "Se ha producido un error al actualizar la incidencia.";
       else
         echo "<script type='text/javascript'>alert('¡Datos de la incidencia actualizados!')</script>";
-    }             
+    }  
+    
+    if($_SESSION['user']){
+
+    } else{
+      header("location: ../index.php");
+    }
 ?>
 
 <h1 class="text-center">Actualizar incidencia</h1>

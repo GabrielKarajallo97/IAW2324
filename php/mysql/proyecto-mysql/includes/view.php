@@ -1,5 +1,5 @@
 <?php  include '../header.php'?>
-
+<?php session_start(); ?>
 <h1 class="text-center">Detalles de incidencia</h1>
   <div class="container">
     <table class="table table-striped table-bordered table-hover">
@@ -46,6 +46,12 @@
                         echo " <td >{$comentario} </td>";
                         echo " </tr> ";
                   }
+                }
+
+                if($_SESSION['user']){
+
+                } else{
+                  header("location: ../index.php");
                 }
             ?>
           </tr>  

@@ -4,7 +4,7 @@
     header("Content-type:text/html;charset=utf-8");
     if (array_key_exists('username',$_POST) OR array_key_exists('password',$_POST))
     {
-        $enlace = mysqli_connect("sql311.thsite.top","thsi_35760646","?Qy3?f1l","thsi_35760646_bdpruebas");
+        $enlace = mysqli_connect("sql311.thsite.top","thsi_35760646","?Qy3?f1l","thsi_35760646_proyecto_mysql");
         if (mysqli_connect_error()) {
             die("Hubo un error en la conexión, inténtelo más tarde");
         }

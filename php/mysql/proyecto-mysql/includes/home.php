@@ -14,7 +14,7 @@
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
       </ul>
     </div>
@@ -69,6 +69,11 @@
           echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
           echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
+        }
+        if($_SESSION['user']){
+
+        } else{
+          header("location: ../index.php");
         }
         ?>
       </tr>
@@ -186,6 +191,16 @@
         background-color: #b2bfcf;
         border: 0px;
       }
+
+      @media only screen and (max-width: 450px) {
+        body{
+          width: 100%;
+          height: 100%;
+        }
+        .container {
+        width: 400px;
+      }
+}
     </style>
 
     <?php include "../footer.php" ?>

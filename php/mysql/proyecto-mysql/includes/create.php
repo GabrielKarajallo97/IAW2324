@@ -1,5 +1,5 @@
 <?php include "../header.php" ?>
-
+<?php session_start(); ?>
 <?php
 if (isset($_POST['crear'])) {
   $planta = htmlspecialchars($_POST['planta']);
@@ -19,6 +19,11 @@ if (isset($_POST['crear'])) {
     echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
   }
 }
+if($_SESSION['user']){
+
+} else{
+  header("location: ../index.php");
+}
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -33,7 +38,7 @@ if (isset($_POST['crear'])) {
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
       </ul>
     </div>
@@ -148,7 +153,7 @@ if (isset($_POST['crear'])) {
         margin-bottom: 20px;
         margin-top: 80px
       }
-
+      
       /*------BOTON------*/
       .boton{
         text-align: center;
