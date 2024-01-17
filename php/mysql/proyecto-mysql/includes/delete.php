@@ -5,16 +5,18 @@ session_start(); ?>
      {
          $id= htmlspecialchars($_GET['eliminar']);
          $query = "DELETE FROM incidencia WHERE id = {$id}"; 
-         $delete_query= mysqli_query($conn, $query);
+        
+         if($_SESSION['user']){
+          $delete_query= mysqli_query($conn, $query);
+         } else{
+           header("location: ../index.php");
+         }
+    
          // header("Location: home.php");
          echo "<script>window.location='home.php';</script>";
      }
 
-     if($_SESSION['user']){
-
-     } else{
-       header("location: ../index.php");
-     }
+     
      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // Verificar que el botón específico se haya presionado
       if (isset($_POST['nombre_de_tu_boton'])) {
