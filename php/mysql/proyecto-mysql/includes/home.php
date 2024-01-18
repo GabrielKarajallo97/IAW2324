@@ -29,13 +29,13 @@
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Incidencias Totales: <?php echo $total?></a>
+          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales: <?php echo $total?></a>
         </li>
         <li class="nav-item">
-          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
+          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
         </li>
         <li class="nav-item">
-          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
+          <a href="administracion.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
         </li>
         <li class="nav-item">
           <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
@@ -155,6 +155,7 @@
       .navbar {
         position: absolute;
         top: 5%;
+        
         width: 100%;
       }
 
