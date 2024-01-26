@@ -32,17 +32,10 @@
           <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales: <?php echo $total?></a>
         </li>
         <li class="nav-item">
-<<<<<<< HEAD
-          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
-        </li>
-        <li class="nav-item">
-          <a href="administracion.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
-=======
           <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
         </li>
         <li class="nav-item">
           <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
->>>>>>> f6daaed (php)
         </li>
         <li class="nav-item">
           <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>

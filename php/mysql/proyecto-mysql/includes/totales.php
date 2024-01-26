@@ -31,7 +31,7 @@
 </nav>
 
 
-<h1 class="text-center">Incidencias Resueltas</h1>
+<h1 class="text-center">Incidencias Totales</h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
     <thead class="table">
@@ -51,7 +51,7 @@
       <tr>
 
         <?php
-        $query = "SELECT * FROM incidencia FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+        $query = "SELECT * FROM incidencia";
         $vista_incidencias = mysqli_query($conn, $query);
 
         while ($row = mysqli_fetch_assoc($vista_incidencias)) {
