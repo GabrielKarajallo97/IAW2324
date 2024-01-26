@@ -37,7 +37,7 @@ if ($_POST) {
       header("location: includes/home.php");
       //echo "<p>Bienvenido " . $usuario . "</p>";
       session_start();
-      $_SESSION["user"]=$usuario;
+      $_SESSION['user']=$usuario;
     } else {
       echo "<div class='container2'><div class='custom-alert alert alert-primary d-flex align-items-center' role='alert'>
         <svg xmlns='http://www.w3.org/2000/svg' class='bi bi-exclamation-triangle-fill flex-shrink-0 me-2' viewBox='0 0 16 16' role='img' aria-label='Warning:'>
