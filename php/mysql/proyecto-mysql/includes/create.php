@@ -9,11 +9,7 @@ if (isset($_POST['crear'])) {
   $fecha_alta = htmlspecialchars($_POST['fecha_alta']);
   $fecha_revision = htmlspecialchars($_POST['fecha_revision']);
   $fecha_resolucion = htmlspecialchars($_POST['fecha_resolucion']);
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> f6daaed (php)
   $query = "INSERT INTO incidencia(planta, aula, descripcion, fecha_alta, fecha_revision, fecha_resolucion, comentario) VALUES('{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_revision}','{$fecha_resolucion}','{$comentario}')";
   $resultado = mysqli_query($conn, $query);
 
@@ -23,15 +19,9 @@ if (isset($_POST['crear'])) {
     echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
   }
 }
-<<<<<<< HEAD
-if ($_SESSION['user']) {
-
-} else {
-=======
 if($_SESSION['user']){
 
 } else{
->>>>>>> f6daaed (php)
   header("location: ../index.php");
 }
 ?>
@@ -60,7 +50,6 @@ if($_SESSION['user']){
   <form action="" method="post">
     <div class="form-group">
       <label for="planta" class="form-label">Planta</label>
-<<<<<<< HEAD
       <select name="planta" class="form-select" aria-label="Default select example">
         <option selected>Seleccione Planta</option>
         <option value="1">Baja</option>
@@ -76,13 +65,6 @@ if($_SESSION['user']){
         <option value="2">101</option>
         <option value="3">102</option>
       </select>
-=======
-      <input type="text" name="planta" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="aula" class="form-label">Aula</label>
-      <input type="text" name="aula" class="form-control">
->>>>>>> f6daaed (php)
     </div>
     <div class="form-group">
       <label for="descripcion" class="form-label">Descripcion</label>
@@ -111,7 +93,6 @@ if($_SESSION['user']){
 </div>
 
 
-<<<<<<< HEAD
 <style>
   body {
     display: block;
@@ -194,7 +175,6 @@ if($_SESSION['user']){
     border: 0px;
   }
 </style>
-=======
     <style>
       body {
         display: block;
@@ -275,4 +255,3 @@ if($_SESSION['user']){
         border: 0px;
       }
     </style>
->>>>>>> f6daaed (php)
