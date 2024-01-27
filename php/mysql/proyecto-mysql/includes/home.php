@@ -98,19 +98,7 @@ if ($_SESSION['user']) {
           echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
         }
-
-
-        $administradores = "SELECT * FROM usuarios WHERE perfil = 'administrador'";//se seleccionan los administradores
-        $resultado_admin = mysqli_query($conn, $administradores);
-
-        if (!$resultado_admin){
-          die('Error en la consulta: ' . mysqli_error($conn));
-        }
-
         
-        
-
-
         ?>
       </tr>
     </tbody>
