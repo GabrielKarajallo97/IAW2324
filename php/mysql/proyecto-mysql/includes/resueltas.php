@@ -9,6 +9,20 @@ if ($_SESSION['user']) {
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
+  <?php
+            $totalq = "SELECT COUNT(*) as total FROM incidencia";
+            $resultado = mysqli_query($conn, $totalq);
+            $total = mysqli_fetch_assoc($resultado)['total'];
+
+            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+            $resultado = mysqli_query($conn, $totalp);
+            $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
+
+            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+            $resultado = mysqli_query($conn, $totalr);
+            $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
+
+  ?>
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -91,7 +105,7 @@ if ($_SESSION['user']) {
 
 
 <style>
-  body {
+ body {
     display: block;
     justify-content: center;
     align-items: center;
@@ -106,39 +120,25 @@ if ($_SESSION['user']) {
     background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1)
   }
-
   /*----------NAV--------------------*/
   nav {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-  .navbar {
-    position: absolute;
-    top: 5%;
-  }
+      .navbar {
+        position: absolute;
+        top: 5%;
+        
+        width: 100%;
+      }
 
-  .nav-item a {
-    border: 0px;
-    color: #fff;
-    margin-right: 10px;
-  }
-
-  .config-icon {
-    text-align: center;
-    position: absolute;
-    left: 45%;
-    top: 40%;
-  }
-
-  .config-icon p {
-    color: #fff;
-  }
-
-  .config-icon i {
-    color: #fff;
-  }
+      .nav-item a {
+        border: 0px;
+        color: #fff;
+        margin-right: 10px;
+      }
 
 
   /*-----------Contenedor--------------*/
@@ -209,11 +209,7 @@ if ($_SESSION['user']) {
   }
 </style>
 <?php
-if ($_SESSION['user']) {
 
-} else {
-  header("location: ../index.php");
-}
 ?>
 
 <?php include "../footer.php" ?>

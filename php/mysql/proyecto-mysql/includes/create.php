@@ -27,6 +27,20 @@ if ($_SESSION['user']) {
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
+  <?php
+            $totalq = "SELECT COUNT(*) as total FROM incidencia";
+            $resultado = mysqli_query($conn, $totalq);
+            $total = mysqli_fetch_assoc($resultado)['total'];
+
+            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+            $resultado = mysqli_query($conn, $totalp);
+            $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
+
+            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+            $resultado = mysqli_query($conn, $totalr);
+            $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
+
+  ?>
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -38,14 +52,22 @@ if ($_SESSION['user']) {
             incidencia</a>
         </li>
         <li class="nav-item">
+          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales: <?php echo $total?></a>
+        </li>
+        <li class="nav-item">
+          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
+        </li>
+        <li class="nav-item">
+          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
+        </li>
+        <li class="nav-item">
           <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<h1 class="text-center">Añadir Incidencias</h1>
+<div class="caja">
 <div class="container">
   <form action="" method="post">
     <div class="form-group">
@@ -91,6 +113,9 @@ if ($_SESSION['user']) {
     </div>
   </form>
 </div>
+</div>
+<h1 class="text-center">Añadir Incidencias</h1>
+
 
 
 <style>
@@ -111,23 +136,27 @@ if ($_SESSION['user']) {
 
   /*----------NAV--------------------*/
   nav {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-  .navbar {
-    position: absolute;
-    top: 5%;
-  }
+      .navbar {
+        position: absolute;
+        top: 5%;
+        
+        width: 100%;
+      }
 
-  .nav-item a {
-    color: #fff;
-    border: 0px;
-    margin-right: 10px;
-  }
+      .nav-item a {
+        border: 0px;
+        color: #fff;
+        margin-right: 10px;
+      }
+
 
   /*-----------Contenedor--------------*/
+
   .container {
     max-width: 400px;
     background-color: #f3f4f5;
@@ -136,19 +165,12 @@ if ($_SESSION['user']) {
     border: 0px;
     box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
     position: absolute;
-    top: 47%;
     left: 50%;
+    top: 60%;
     transform: translate(-50%, -50%);
   }
 
-  .container2 {
-    position: absolute;
-    top: 71%;
-    left: 51%;
-    transform: translate(-50%, -50%);
-    height: 5px;
-  }
-
+ 
 
   form {
     padding: 20px;
