@@ -52,18 +52,18 @@ if ($_SESSION['user']) {
       <label for="planta" class="form-label">Planta</label>
       <select name="planta" class="form-select" aria-label="Default select example">
         <option selected>Seleccione Planta</option>
-        <option value="1">Baja</option>
-        <option value="2">Primera</option>
-        <option value="3">Segunda</option>
+        <option value="Baja">Baja</option>
+        <option value="Primera">Primera</option>
+        <option value="Segunda">Segunda</option>
       </select>
     </div>
     <div class="form-group">
       <label for="aula" class="form-label">Aula</label>
       <select name="aula" class="form-select" aria-label="Default select example">
         <option selected>Seleccione Aula</option>
-        <option value="1">100</option>
-        <option value="2">101</option>
-        <option value="3">102</option>
+        <option value="100">100</option>
+        <option value="101">101</option>
+        <option value="102">102</option>
       </select>
     </div>
     <div class="form-group">
