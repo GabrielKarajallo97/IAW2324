@@ -101,11 +101,14 @@ if ($_SESSION['user']) {
 
 
         $administradores = "SELECT * FROM usuarios WHERE perfil = 'administrador'";//se seleccionan los administradores
-        $perfil = $_SESSION['administrador']; //obtenemos el perfil del usuario
-        $enlace_id = $_GET ['enlace_id']; //pasamos el id del enlace por GET
+        $resultado_admin = mysqli_query($conn, $administradores);
 
-        if ($perfil !== $administradores && )
-        echo "NO TIENES PERMISO"
+        if (!$resultado_admin){
+          die('Error en la consulta: ' . mysqli_error($conn));
+        }
+
+        
+        
 
 
         ?>
