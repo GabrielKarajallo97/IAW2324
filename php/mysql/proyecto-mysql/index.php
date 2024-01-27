@@ -31,7 +31,7 @@ if ($_POST) {
 
   if ($enlace) {
     //$query = "SELECT * FROM usuarios WHERE username='".$_POST['usuario']."' AND password='".$_POST['contrasena']."'";
-    $query = "SELECT * FROM usuarios WHERE username='" . mysqli_real_escape_string($enlace, $usuario) . "' AND password='" . mysqli_real_escape_string($enlace, $contrasena) . "'";
+    $query = "SELECT * FROM usuarios WHERE username='" . mysqli_real_escape_string($enlace, $usuario) . "' AND password='" . mysqli_real_escape_string($enlace, base64_decode($contrasena)) . "'";
     $result = mysqli_query($enlace, $query);
     if (mysqli_num_rows($result) == 1) {
       header("location: includes/home.php");

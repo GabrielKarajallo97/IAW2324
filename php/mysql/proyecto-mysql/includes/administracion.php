@@ -112,7 +112,7 @@
             else
             {
                 // Añadir a nuestro usuario a la BD
-                $query="INSERT INTO usuarios (username, password) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_decode($_POST['password']))."')";
+                $query="INSERT INTO usuarios (username, password) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_encode($_POST['password']))."')";
                 if (mysqli_query($enlace,$query)){
                     echo "<p>Usuario añadido</p>";
                 
