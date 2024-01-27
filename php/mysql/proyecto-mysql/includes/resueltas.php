@@ -1,5 +1,11 @@
 <?php include "../header.php" ?>
-<?php session_start(); ?>
+<?php session_start(); 
+if ($_SESSION['user']) {
+
+} else {
+  header("location: ../index.php");
+}
+?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -76,11 +82,6 @@
           echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
           echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
-        }
-        if ($_SESSION['user']) {
-
-        } else {
-          header("location: ../index.php");
         }
         ?>
       </tr>
