@@ -56,7 +56,7 @@
 <div class="container mt-5">
   <h3 class="text-center"> IES Antonio Machado</h3>
   <div class="formulario">
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form method="post">
     <div class="mb-3">
         <label for="usuario" class="form-label">Perfil</label>
         <select name="planta" class="form-select" aria-label="Default select example">
@@ -68,11 +68,11 @@
       </div>
       <div class="mb-3">
         <label for="usuario" class="form-label">Usuario</label>
-        <input type="text" name="usuario" class="form-control">
+        <input type="text" name="username" class="form-control">
       </div>
       <div class="mb-3">
         <label for="contrasena" class="form-label">Contraseña</label>
-        <input type="password" name="contrasena" class="form-control">
+        <input type="password" name="password" class="form-control">
       </div>
       <div class="mb-2">
         <button type="submit" class="boton btn btn-primary">Crear</button>
@@ -105,14 +105,14 @@
             // El usuario ha rellenado ambos campos
             $query = "SELECT username FROM usuarios WHERE username='".mysqli_real_escape_string($enlace,$_POST['username'])."'";
             $result = mysqli_query($enlace,$query);
-            if (mysqli_num_rows($result)>0)
+            if (mysqli_num_rows($result)> 0)
             {
                 echo "<p>Ese nombre de usuario ya está registrado. Intenta con otro</p>";
             }
             else
             {
                 // Añadir a nuestro usuario a la BD
-                $query="INSERT INTO usuarios (username, password) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_encode($_POST['password']))."')";
+                $query="INSERT INTO usuarios (username, password) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_decode($_POST['password']))."')";
                 if (mysqli_query($enlace,$query)){
                     echo "<p>Usuario añadido</p>";
                 
