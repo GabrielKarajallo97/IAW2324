@@ -1,9 +1,8 @@
 <?php include "../header.php" ?>
 <?php session_start(); 
- if($_SESSION['user']){
-
+ if($_SESSION[$query]){
  } else{
-   header("location: ../index.php");
+   header("location: restringida.php");
  }
  ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -60,10 +59,10 @@
     <div class="mb-3">
         <label for="usuario" class="form-label">Perfil</label>
         <select name="perfil" class="form-select" aria-label="Default select example">
-        <option selected>Seleccione Perfil</option>
-        <option value="direccion">Dirección</option>
-        <option value="profesor">Profesor</option>
-        <option value="administrador">Administrador</option>
+          <option selected>Seleccione Perfil</option>
+          <option value="direccion">Dirección</option>
+          <option value="profesor">Profesor</option>
+          <option value="administrador">Administrador</option>
       </select>
       </div>
       <div class="mb-3">

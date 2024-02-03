@@ -5,6 +5,11 @@ if ($_SESSION['user']) {
 } else {
   header("location: ../index.php");
 }
+
+//Realizamos la consulta buscar el perfil del usuario
+$query = "SELECT * FROM usuarios WHERE perfil = 'administrador'";
+$result = mysqli_query($conn, $query);
+$_SESSION[$query]; 
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -42,17 +47,17 @@ if ($_SESSION['user']) {
         <li class="nav-item">
           <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
         </li>
-        <li class="nav-item"><a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+        <li class="nav-item">
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<h1 class="text-center">¡Bienvenid@
-  <?php
-  echo $_SESSION["user"] . "!";
-  ?>
-</h1>
+<h1 class="text-center">¡Bienvenid@ <?php echo $_SESSION["user"] . "!"; ?> </h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
     <thead class="table">
@@ -107,7 +112,10 @@ if ($_SESSION['user']) {
 <div class="container2 text-center mt-5">
   <a href="../index.php" class="btn btn-warning mt-5"> Volver </a>
   <div>
+        <?php
 
+
+        ?>
     <style>
       body {
         display: block;

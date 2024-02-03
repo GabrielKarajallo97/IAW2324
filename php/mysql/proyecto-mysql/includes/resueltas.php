@@ -70,7 +70,7 @@ if ($_SESSION['user']) {
       <tr>
 
         <?php
-        $query = "SELECT * FROM incidencia FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+        $query = "SELECT * FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
         $vista_incidencias = mysqli_query($conn, $query);
 
         while ($row = mysqli_fetch_assoc($vista_incidencias)) {
