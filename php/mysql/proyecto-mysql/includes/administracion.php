@@ -59,7 +59,7 @@
     <form method="post">
     <div class="mb-3">
         <label for="usuario" class="form-label">Perfil</label>
-        <select name="planta" class="form-select" aria-label="Default select example">
+        <select name="perfil" class="form-select" aria-label="Default select example">
         <option selected>Seleccione Perfil</option>
         <option value="direccion">Dirección</option>
         <option value="profesor">Profesor</option>
@@ -85,7 +85,6 @@
 <?php
 
     // Conexion con la base de datos
-    header("Content-type:text/html;charset=utf-8");
     if (array_key_exists('username',$_POST) OR array_key_exists('password',$_POST))
     {
         $enlace = mysqli_connect("sql311.thsite.top","thsi_35760646","?Qy3?f1l","thsi_35760646_proyecto_mysql");
@@ -95,6 +94,10 @@
         if ($_POST['username']=='')
         {
             echo "<p>El nombre de usuario es obligatorio</p>";
+        }
+        else if ($_POST['perfil']=='')
+        {
+            echo "<p>El perfil es obligatorio</p>";
         }
         else if ($_POST['password']=='')
         {
@@ -112,7 +115,7 @@
             else
             {
                 // Añadir a nuestro usuario a la BD
-                $query="INSERT INTO usuarios (username, password) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_encode($_POST['password']))."')";
+                $query="INSERT INTO usuarios (username, password, perfil) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_encode($_POST['password']))."','".mysqli_real_escape_string($enlace,$_POST['perfil'])."')";
                 if (mysqli_query($enlace,$query)){
                     echo "<p>Usuario añadido</p>";
                 
