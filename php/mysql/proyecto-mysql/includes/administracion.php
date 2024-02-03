@@ -1,9 +1,10 @@
 <?php include "../header.php" ?>
 <?php session_start(); 
- if($_SESSION[$query]){
- } else{
-   header("location: restringida.php");
- }
+if ($_SESSION['user']) {
+
+} else {
+  header("location: ../index.php");
+}
  ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
