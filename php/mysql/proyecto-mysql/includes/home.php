@@ -42,14 +42,13 @@ if ($_SESSION['user']) {
         <li class="nav-item">
           <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
         </li>
-        <li class="nav-item">
-          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+        <li class="nav-item"><a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<h1 class="text-center">¡Bienvenido 
+<h1 class="text-center">¡Bienvenid@
   <?php
   echo $_SESSION["user"] . "!";
   ?>
@@ -99,6 +98,7 @@ if ($_SESSION['user']) {
           echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
         }
+        
         ?>
       </tr>
     </tbody>

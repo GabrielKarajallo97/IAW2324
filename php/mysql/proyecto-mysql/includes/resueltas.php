@@ -50,7 +50,6 @@ if ($_SESSION['user']) {
   </div>
 </nav>
 
-
 <h1 class="text-center">Incidencias Resueltas</h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
@@ -208,8 +207,5 @@ if ($_SESSION['user']) {
     border: 0px;
   }
 </style>
-<?php
-
-?>
 
 <?php include "../footer.php" ?>
