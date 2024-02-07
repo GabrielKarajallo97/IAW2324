@@ -12,11 +12,11 @@
     }
     
     //  Creamos una variable que redirija al fichero que tiene la orden de crear la tabla 
-    $sql = "/repaso/crear_tabla.php";
+    $sql = "crear_tabla.php";
     // llamamos al otro fichero con file_get_contents
    $sql_query = file_get_contents($sql);
     
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->multi_query($sql_query) === TRUE) {
       echo "Tabla usuarios creada correctamente";
     } else {
       echo "Error en la creación de la tabla: " . $conn->error;
