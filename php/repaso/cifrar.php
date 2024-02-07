@@ -18,8 +18,11 @@
         // Obtener el texto enviado por el formulario
         $texto = $_POST['texto'];
 
-        // Cifrar el texto utilizando la función crypt
-        $texto_cifrado = crypt($texto);
+        // Generar una sal aleatoria
+        $sal = base64_encode(random_bytes(22));
+
+        // Cifrar el texto utilizando la función crypt con la sal generada
+        $texto_cifrado = crypt($texto, '$2a$10$' . $sal);
 
         // Mostrar el texto cifrado
         echo "<h3>Texto Cifrado:</h3>";
