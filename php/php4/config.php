@@ -1,8 +1,8 @@
 <?php
 // Definición de constantes
-define('UPLOAD_DIR', '/path/to/upload/directory');
-define('PDF_DIR', '/path/to/pdf/directory');
-define('TEMP_DIR', '/path/to/temp/directory');
+define('UPLOAD_DIR', '/htdocs/php4/');
+define('PDF_DIR', '/htdocs/php4/GABRIEL_KARAJALLO.pdf');
+define('TEMP_DIR', '/htdocs/php4/bizarp.jpg');
 
 // Definición de variables
 $appName = 'Mi Aplicación Web';
@@ -24,8 +24,8 @@ $version = '1.0';
 include 'config.php';
 
 // Mostrar las constantes y variables definidas en config.php
-echo "<p>Directorio de subida de imágenes: " . UPLOAD_DIR . "</p>";
-echo "<p>Directorio donde se almacenan PDFs: " . PDF_DIR . "</p>";
+echo "<p>Directorio de subida de imágenes: " . $UPLOAD_DIR . "</p>";
+echo "<p>Directorio donde se almacenan PDFs: " . $PDF_DIR . "</p>";
 echo "<p>Carpeta temporal: " . TEMP_DIR . "</p>";
 echo "<p>Nombre de la aplicación: " . $appName . "</p>";
 echo "<p>Versión de la aplicación: " . $version . "</p>";
