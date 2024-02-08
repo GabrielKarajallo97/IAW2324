@@ -44,6 +44,12 @@
         body{
             background-color: #2a363b;
         }
+
+        img{
+            margin-top: 20px;
+            width: 30%;
+            height: 30%;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +61,7 @@
         <a href="/php4" class="folder-button">PHP4</a>
         <a href="/ej_mysql" class="folder-button">MYSQL</a>
         <a href="/proyecto-mysql" class="folder-button" >PROYECTO</a>
-        <img src="img.gif" alt="">
+        <img src="imagen.png" alt="">
     </div>
 </body>
 </html>

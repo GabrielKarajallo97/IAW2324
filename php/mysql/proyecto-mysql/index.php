@@ -197,9 +197,5 @@ if ($_POST) {
     padding: 10px;
     font-weight: bold;
   }
-
-  @media only screen and (max-width: 600px) {
-    /* Estilos específicos para pantallas pequeñas (por ejemplo, dispositivos móviles) */
-}
 </style>
 <?php include "footer.php" ?>
