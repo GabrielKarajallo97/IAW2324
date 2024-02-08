@@ -31,13 +31,18 @@ if ($_POST) {
 
   if ($enlace) {
     //$query = "SELECT * FROM usuarios WHERE username='".$_POST['usuario']."' AND password='".$_POST['contrasena']."'";
-    $query = "SELECT * FROM usuarios WHERE username='" . mysqli_real_escape_string($enlace, $usuario) . "' AND password='" . mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'";
+    $query = "SELECT * FROM usuarios WHERE 
+    username='" . mysqli_real_escape_string($enlace, $usuario) . "' 
+    AND password='" . mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'"
+    ;
+
     $result = mysqli_query($enlace, $query);
+
     if (mysqli_num_rows($result) == 1) {
       header("location: includes/home.php");
-      //echo "<p>Bienvenido " . $usuario . "</p>";
-      session_start();
+     
       $_SESSION['user']=$usuario;
+      
     } else {
       echo "<div class='container2'><div class='custom-alert alert alert-primary d-flex align-items-center' role='alert'>
         <svg xmlns='http://www.w3.org/2000/svg' class='bi bi-exclamation-triangle-fill flex-shrink-0 me-2' viewBox='0 0 16 16' role='img' aria-label='Warning:'>

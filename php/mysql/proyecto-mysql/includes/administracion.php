@@ -108,17 +108,17 @@ if ($_SESSION['user']) {
             // El usuario ha rellenado ambos campos
             $query = "SELECT username FROM usuarios WHERE username='".mysqli_real_escape_string($enlace,$_POST['username'])."'";
             $result = mysqli_query($enlace,$query);
+
             if (mysqli_num_rows($result)> 0)
             {
                 echo "<p>Ese nombre de usuario ya está registrado. Intenta con otro</p>";
-            }
-            else
-            {
+
+              } else {
+
                 // Añadir a nuestro usuario a la BD
                 $query="INSERT INTO usuarios (username, password, perfil) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_encode($_POST['password']))."','".mysqli_real_escape_string($enlace,$_POST['perfil'])."')";
-                if (mysqli_query($enlace,$query)){
-                    echo "<p>Usuario añadido</p>";
-                
+               if (mysqli_query($enlace,$query)){
+                    echo "<p>Usuario añadido</p>";     
                 }
                 else
                 {
