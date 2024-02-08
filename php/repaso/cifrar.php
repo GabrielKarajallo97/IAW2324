@@ -18,7 +18,7 @@
         // Obtener el texto enviado por el formulario
         $texto = $_POST['texto'];
 
-        // Generar una sal aleatoria
+        
         $sal = base64_encode(random_bytes(22));
 
         // Cifrar el texto utilizando la función crypt con la sal generada
