@@ -55,7 +55,7 @@
         <a href="/php4" class="folder-button">PHP4</a>
         <a href="/ej_mysql" class="folder-button">MYSQL</a>
         <a href="/proyecto-mysql" class="folder-button" >PROYECTO</a>
-
+        <img src="img.gif" alt="">
     </div>
 </body>
 </html>
