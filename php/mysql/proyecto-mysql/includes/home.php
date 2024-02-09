@@ -1,28 +1,27 @@
 <!-- Header -->
 <?php include "../header.php" ?>
-<?php session_start(); 
+<?php session_start();
 if ($_SESSION['user']) {
 } else {
   header("location: ../index.php");
 }
 ?>
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-  <?php
-            $totalq = "SELECT COUNT(*) as total FROM incidencia";
-            $resultado = mysqli_query($conn, $totalq);
-            $total = mysqli_fetch_assoc($resultado)['total'];
+    <?php
+    $totalq = "SELECT COUNT(*) as total FROM incidencia";
+    $resultado = mysqli_query($conn, $totalq);
+    $total = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
-            $resultado = mysqli_query($conn, $totalp);
-            $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalp);
+    $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
-            $resultado = mysqli_query($conn, $totalr);
-            $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalr);
+    $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
-  ?>
+    ?>
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -34,25 +33,34 @@ if ($_SESSION['user']) {
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales: <?php echo $total?></a>
+          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales:
+            <?php echo $total ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
+          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes:
+            <?php echo $totalpendientes ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
+          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas:
+            <?php echo $totalresuelta ?>
+          </a>
         </li>
         <li class="nav-item">
           <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión</a>
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<h1 class="text-center">¡Bienvenid@ <?php echo $_SESSION["user"] . "!"; ?> </h1>
+<h1 class="text-center">¡Bienvenid@
+  <?php echo $_SESSION["user"] . "!"; ?>
+</h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
     <thead class="table">
@@ -70,7 +78,6 @@ if ($_SESSION['user']) {
     </thead>
     <tbody>
       <tr>
-
         <?php
         $query = "SELECT * FROM incidencia";
         $vista_incidencias = mysqli_query($conn, $query);
@@ -98,19 +105,12 @@ if ($_SESSION['user']) {
           echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
         }
-        
         ?>
       </tr>
     </tbody>
   </table>
 </div>
-<div class="container2 text-center mt-5">
-  <a href="../index.php" class="btn btn-warning mt-5"> Volver </a>
-  <div>
-        <?php
 
-
-        ?>
     <style>
       body {
         display: block;
@@ -158,7 +158,7 @@ if ($_SESSION['user']) {
       .navbar {
         position: absolute;
         top: 5%;
-        
+
         width: 100%;
       }
 
@@ -223,7 +223,6 @@ if ($_SESSION['user']) {
         background-color: #b2bfcf;
         border: 0px;
       }
-
     </style>
 
     <?php include "../footer.php" ?>

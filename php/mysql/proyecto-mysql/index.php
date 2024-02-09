@@ -20,6 +20,7 @@
     </form>
   </div>
 </div>
+
 <?php
 if ($_POST) {
   $usuario = htmlspecialchars($_POST["usuario"]);
