@@ -32,21 +32,14 @@ if ($_POST) {
   $enlace = mysqli_connect("sql311.thsite.top", "thsi_35760646", "?Qy3?f1l", "thsi_35760646_proyecto_mysql");
 
   if ($enlace) {
-
-    $query = "SELECT * FROM usuarios WHERE  username='" . mysqli_real_escape_string($enlace, $usuario) . "' 
-    AND password='" . mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'";
-    
-    $query2 = "SELECT * FROM usuarios WHERE username ='" . mysqli_real_escape_string($enlace, 'administrador') . "'";
-    
+    $query = "SELECT * FROM usuarios WHERE  username='" . mysqli_real_escape_string($enlace, $usuario) . "'AND password='" .  mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'";
     
     $result = mysqli_query($enlace, $query);
 
     if (mysqli_num_rows($result) == 1) {
-      $_SESSION['user'] = $usuario;
-      $_SESSION['perfil'] = $query2;
-
       header("location: includes/home.php");
-
+      session_start();
+      $_SESSION['user'] = $usuario;
     } else {
       echo "<div class='container2'><div class='custom-alert alert alert-primary d-flex align-items-center' role='alert'>
         <svg xmlns='http://www.w3.org/2000/svg' class='bi bi-exclamation-triangle-fill flex-shrink-0 me-2' viewBox='0 0 16 16' role='img' aria-label='Warning:'>
