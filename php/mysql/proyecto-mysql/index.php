@@ -20,22 +20,15 @@
     </form>
   </div>
 </div>
-
-
 <?php
 if ($_POST) {
   $usuario = htmlspecialchars($_POST["usuario"]);
   $contrasena = htmlspecialchars($_POST["contrasena"]);
-  
-
   // Intentamos la conexión con MySQL
   $enlace = mysqli_connect("sql311.thsite.top", "thsi_35760646", "?Qy3?f1l", "thsi_35760646_proyecto_mysql");
-
   if ($enlace) {
-    $query = "SELECT * FROM usuarios WHERE  username='" . mysqli_real_escape_string($enlace, $usuario) . "'AND password='" .  mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'";
-    
+    $query = "SELECT * FROM usuarios WHERE  username='" . mysqli_real_escape_string($enlace, $usuario) . "'AND password='" .  mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'";  
     $result = mysqli_query($enlace, $query);
-
     if (mysqli_num_rows($result) == 1) {
       header("location: includes/home.php");
       session_start();
@@ -56,17 +49,14 @@ if ($_POST) {
     echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
     echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
   }
-
 }
 ?>
-
 <style>
   /*-------------Formulario-----------*/
   .formulario {
     width: 90%;
     margin: 0 auto;
   }
-
   .form-control {
     width: 100%;
     /* Ocupa todo el ancho del contenedor */
@@ -75,19 +65,16 @@ if ($_POST) {
     /* Ajusta el relleno según tus necesidades */
     border-radius: 10px;
   }
-
   @keyframes fadeIn {
     from {
       opacity: 0;
       transform: translateY(-10px);
     }
-
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-
   .custom-alert {
     display: flex;
     align-items: center;
@@ -106,7 +93,6 @@ if ($_POST) {
     animation: fadeIn 0.5s ease-out;
     /* Aplica la animación */
   }
-
   .custom-alert svg {
     width: 20px;
     /* Tamaño del icono */
@@ -116,14 +102,12 @@ if ($_POST) {
     fill: #1c5a91;
     /* Color del icono */
   }
-
   .custom-alert div {
     font-size: 14px;
     /* Tamaño del texto */
     color: #1c5a91;
     /* Color del texto */
   }
-
   /*------------body-------------*/
   body {
     display: flex;
@@ -140,7 +124,6 @@ if ($_POST) {
     background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1)
   }
-
   /*----------Contenedor--------*/
   .container {
     width: 100%;
@@ -156,7 +139,6 @@ if ($_POST) {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
   .container2 {
     position: absolute;
     top: 53%;
@@ -164,7 +146,6 @@ if ($_POST) {
     transform: translate(-50%, -50%);
     height: 5px;
   }
-
   /*------------Titulo------------*/
   .titulo {
     position: absolute;
@@ -172,7 +153,6 @@ if ($_POST) {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
   h1 {
     font-family: 'Paytone One', sans-serif;
     color: #fff;
@@ -181,18 +161,15 @@ if ($_POST) {
     text-align: center;
     margin-bottom: 20px;
   }
-
   h3 {
     font-family: 'Norican', cursive;
     color: #25424c;
     margin-bottom: 30px;
   }
-
   /*----------Boton------------*/
   .mb-2 {
     text-align: center;
   }
-
   .btn {
     background-color: #b2bfcf;
     border: 0px;
