@@ -1,10 +1,11 @@
 <!-- Header -->
 <?php include "../header.php" ?>
 <?php session_start(); 
-if ($_SESSION['user']) {
-} else {
+if (!isset($_SESSION['user']) && !isset($_SESSION['perfil'])) {
   header("location: ../index.php");
+  exit();
 }
+  
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
