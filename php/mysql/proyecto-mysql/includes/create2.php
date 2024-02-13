@@ -10,7 +10,8 @@ if (isset($_POST['crear'])) {
   $fecha_revision = htmlspecialchars($_POST['fecha_revision']);
   $fecha_resolucion = htmlspecialchars($_POST['fecha_resolucion']);
  
-  $query = "INSERT INTO incidencia(planta, aula, descripcion, fecha_alta, fecha_revision, fecha_resolucion, comentario) VALUES('{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_revision}','{$fecha_resolucion}','{$comentario}')";
+  $usuario = $_SESSION["user"];
+  $query = "INSERT INTO incidencia(usuario, planta, aula, descripcion, fecha_alta, fecha_revision, fecha_resolucion, comentario) VALUES('{$usuario}','{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_revision}','{$fecha_resolucion}','{$comentario}')";
   $resultado = mysqli_query($conn, $query);
 
   if (!$resultado) {

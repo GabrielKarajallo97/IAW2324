@@ -55,6 +55,7 @@ if ($_SESSION['user']) {
     <thead class="table">
       <tr>
         <th scope="col">ID</th>
+        <th scope="col">Usuario</th>
         <th scope="col">Planta</th>
         <th scope="col">Aula</th>
         <th scope="col">Descripción</th>
@@ -74,6 +75,7 @@ if ($_SESSION['user']) {
 
         while ($row = mysqli_fetch_assoc($vista_incidencias)) {
           $id = $row['id'];
+          $usuario = $row['usuario'];
           $planta = $row['planta'];
           $aula = $row['aula'];
           $descripcion = $row['descripcion'];
@@ -83,6 +85,7 @@ if ($_SESSION['user']) {
           $comentario = $row['comentario'];
           echo "<tr >";
           echo " <th scope='row' >{$id}</th>";
+          echo " <th scope='row' >{$usuario}</th>";
           echo " <td > {$planta}</td>";
           echo " <td > {$aula}</td>";
           echo " <td >{$descripcion} </td>";
