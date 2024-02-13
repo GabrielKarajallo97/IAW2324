@@ -16,11 +16,11 @@ if(isset($_GET['eliminar'])) {
 } elseif(isset($_GET['confirmar'])) { // Verificar si se ha confirmado la eliminación
     $usuario = $_GET['confirmar'];
     
-    // Construir la sentencia SQL para eliminar las incidencias asociadas al usuario
-    //$query_incidencias = "DELETE FROM incidencias WHERE creador = '{$usuario}'";
-    //$resultado_incidencias = mysqli_query($conn, $query_incidencias);
+    //eliminar las incidencias asociadas al usuario
+    $query_incidencias = "DELETE FROM incidencia WHERE usuario = '{$usuario}'";
+    $resultado_incidencias = mysqli_query($conn, $query_incidencias);
     
-    // Construir la sentencia SQL para eliminar al usuario
+    // sentencia SQL para eliminar al usuario
     $query_usuario = "DELETE FROM usuarios WHERE username = '{$usuario}'";
     $resultado_usuario = mysqli_query($conn, $query_usuario);
     
