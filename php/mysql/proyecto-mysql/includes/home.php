@@ -77,6 +77,7 @@ if ($_SESSION['user']) {
         <th scope="col">Fecha revisión</th>
         <th scope="col">Fecha solución</th>
         <th scope="col">Comentario</th>
+        <th scope="col">Estado</th>
         <th scope="col" colspan="3" class="text-center">Operaciones</th>
       </tr>
     </thead>
@@ -106,11 +107,20 @@ if ($_SESSION['user']) {
           echo " <td >{$fecha_revision} </td>";
           echo " <td >{$fecha_resolucion} </td>";
           echo " <td >{$comentario} </td>";
+          if ($fecha_resolucion == '0000-00-00') {
+            echo "<td> Pendiente </td>";
+        } else if ($fecha_resolucion != '0000-00-00') {
+            echo "<td scope='row' > Resuelta </td>";
+        }        
           echo " <td class='text-center'> <a href='view.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i>  </a> </td>";
           echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
           echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
         }
+
+
+        
+
         ?>
       </tr>
     </tbody>

@@ -17,6 +17,21 @@ if (isset($_POST['crear'])) {
   if (!$resultado) {
     echo "Algo ha ido mal añadiendo la incidencia: " . mysqli_error($conn);
   } else {
+    if (!empty($fecha_resolucion)) {
+      // Obtener el correo electrónico del usuario
+      $query_usuario = "SELECT email FROM usuario WHERE username = '{$usuario}'";
+      $resultado_usuario = mysqli_query($conn, $query_usuario);
+      $row_usuario = mysqli_fetch_assoc($resultado_usuario);
+      $email_usuario = $row_usuario['email'];
+
+      // Enviar correo electrónico al usuario
+      $to = $email_usuario;
+      $subject = "Incidencia Resuelta";
+      $message = "Estimado $usuario,\n\nTu incidencia ha sido resuelta. ¡Gracias por tu paciencia!";
+      $headers = "From: gabrielkarajallo97@iesamachado.org";
+
+      mail($to, $subject, $message, $headers);
+    }
     echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
   }
 }

@@ -71,6 +71,10 @@ if ($_SESSION['user']) {
         <input type="text" name="username" class="form-control">
       </div>
       <div class="mb-3">
+        <label for="gmail" class="form-label">Gmail</label>
+        <input type="email" name="gmail" class="form-control">
+      </div>
+      <div class="mb-3">
         <label for="contrasena" class="form-label">Contraseña</label>
         <input type="password" name="password" class="form-control">
       </div>
@@ -95,6 +99,10 @@ if ($_SESSION['user']) {
         {
             echo "<p>El nombre de usuario es obligatorio</p>";
         }
+        else if ($_POST['gmail']=='')
+        {
+            echo "<p>El gmail es obligatorio</p>";
+        }
         else if ($_POST['perfil']=='')
         {
             echo "<p>El perfil es obligatorio</p>";
@@ -116,7 +124,7 @@ if ($_SESSION['user']) {
               } else {
 
                 // Añadir a nuestro usuario a la BD
-                $query="INSERT INTO usuarios (username, password, perfil) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_encode($_POST['password']))."','".mysqli_real_escape_string($enlace,$_POST['perfil'])."')";
+                $query="INSERT INTO usuarios (username, password, perfil, gmail) VALUES('".mysqli_real_escape_string($enlace,$_POST['username'])."','".mysqli_real_escape_string($enlace,base64_encode($_POST['password']))."','".mysqli_real_escape_string($enlace,$_POST['perfil'])."', '".mysqli_real_escape_string($enlace,$_POST['gmail'])."')";
                if (mysqli_query($enlace,$query)){
                     echo "<p>Usuario añadido</p>";     
                 }
