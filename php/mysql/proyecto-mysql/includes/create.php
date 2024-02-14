@@ -9,7 +9,7 @@ if (isset($_POST['crear'])) {
   $fecha_alta = htmlspecialchars($_POST['fecha_alta']);
   $fecha_revision = htmlspecialchars($_POST['fecha_revision']);
   $fecha_resolucion = htmlspecialchars($_POST['fecha_resolucion']);
-  
+
   $usuario = $_SESSION["user"];
   $query = "INSERT INTO incidencia(usuario, planta, aula, descripcion, fecha_alta, fecha_revision, fecha_resolucion, comentario) VALUES('{$usuario}', '{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_revision}','{$fecha_resolucion}','{$comentario}')";
   $resultado = mysqli_query($conn, $query);
@@ -43,20 +43,20 @@ if ($_SESSION['user']) {
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-  <?php
-            $totalq = "SELECT COUNT(*) as total FROM incidencia";
-            $resultado = mysqli_query($conn, $totalq);
-            $total = mysqli_fetch_assoc($resultado)['total'];
+    <?php
+    $totalq = "SELECT COUNT(*) as total FROM incidencia";
+    $resultado = mysqli_query($conn, $totalq);
+    $total = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
-            $resultado = mysqli_query($conn, $totalp);
-            $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalp);
+    $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
-            $resultado = mysqli_query($conn, $totalr);
-            $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalr);
+    $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
-  ?>
+    ?>
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -68,73 +68,104 @@ if ($_SESSION['user']) {
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales: <?php echo $total?></a>
+          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales:
+            <?php echo $total ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
+          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes:
+            <?php echo $totalpendientes ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
+          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas:
+            <?php echo $totalresuelta ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 <div class="caja">
-<div class="container">
-  <form action="" method="post">
-    <div class="form-group">
-      <label for="planta" class="form-label">Planta</label>
-      <select name="planta" class="form-select" aria-label="Default select example">
-        <option selected>Seleccione Planta</option>
-        <option value="Baja">Baja</option>
-        <option value="Primera">Primera</option>
-        <option value="Segunda">Segunda</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="aula" class="form-label">Aula</label>
-      <select name="aula" class="form-select" aria-label="Default select example">
-        <option selected>Seleccione Aula</option>
-        <option value="100">100</option>
-        <option value="101">101</option>
-        <option value="102">102</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="descripcion" class="form-label">Descripcion</label>
-      <input type="text" name="descripcion" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="fecha_alta" class="form-label">Fecha Alta</label>
-      <input type="date" name="fecha_alta" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="fecha_revision" class="form-label">Fecha Revisión</label>
-      <input type="date" name="fecha_revision" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="fecha_resolucion" class="form-label">Fecha Solución</label>
-      <input type="date" name="fecha_resolucion" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="comentario" class="form-label">Comentario</label>
-      <input type="text" name="comentario" class="form-control">
-    </div>
-    <div class="form-group boton">
-      <button type="submit" name="crear" class="btn btn-primary mt-2">Añadir</button>
-    </div>
-  </form>
-</div>
+  <div class="container">
+    <form action="" method="post">
+      <div class="form-group">
+        <label for="planta" class="form-label">Planta</label>
+        <select name="planta" id="planta" class="form-select" aria-label="Default select example">
+          <option selected>Seleccione Planta</option>
+          <option value="baja">Baja</option>
+          <option value="primera">Primera</option>
+          <option value="segunda">Segunda</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="aula" class="form-label">Aula</label>
+        <select name="aula" id="aula" class="form-select" aria-label="Default select example">
+          <option selected>Seleccione Aula</option>
+          <option value="100">100</option>
+          <option value="101">101</option>
+          <option value="102">102</option>
+          <?php
+          /*$aula = array(
+              'baja' => array('1', '2', '3'),
+              'primera' => array('10', '20', '30'),
+              'segunda' => array('100', '200', '300'),
+          );
+          // Obtener el valor seleccionado de planta
+          $planta_seleccionada = isset($_POST['planta']) ? $_POST['planta'] : '';
+          // Generar opciones de aula basadas en la planta seleccionada
+          foreach ($aula[$planta_seleccionada] as $opcion) {
+              echo "<option value=\"$opcion\">$opcion</option>";
+          }*/
+          ?>
+        </select>
+        <div class="form-group">
+          <label for="descripcion" class="form-label">Descripcion</label>
+          <input type="text" name="descripcion" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="fecha_alta" class="form-label">Fecha Alta</label>
+          <input type="date" name="fecha_alta" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="fecha_revision" class="form-label">Fecha Revisión</label>
+          <input type="date" name="fecha_revision" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="fecha_resolucion" class="form-label">Fecha Solución</label>
+          <input type="date" name="fecha_resolucion" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="comentario" class="form-label">Comentario</label>
+          <input type="text" name="comentario" class="form-control">
+        </div>
+        <div class="form-group boton">
+          <button type="submit" name="crear" class="btn btn-primary mt-2">Añadir</button>
+        </div>
+    </form>
+  </div>
 </div>
 <h1 class="text-center">Añadir Incidencias</h1>
 
 
 
 <style>
+  #aula {
+    z-index: 9999;
+    /* Ajusta el índice Z según sea necesario */
+  }
+
   body {
     display: block;
     justify-content: center;
@@ -152,23 +183,23 @@ if ($_SESSION['user']) {
 
   /*----------NAV--------------------*/
   nav {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-      .navbar {
-        position: absolute;
-        top: 5%;
-        
-        width: 100%;
-      }
+  .navbar {
+    position: absolute;
+    top: 5%;
 
-      .nav-item a {
-        border: 0px;
-        color: #fff;
-        margin-right: 10px;
-      }
+    width: 100%;
+  }
+
+  .nav-item a {
+    border: 0px;
+    color: #fff;
+    margin-right: 10px;
+  }
 
 
   /*-----------Contenedor--------------*/
@@ -182,11 +213,11 @@ if ($_SESSION['user']) {
     box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
     position: absolute;
     left: 50%;
-    top: 60%;
+    top: 50%;
     transform: translate(-50%, -50%);
   }
 
- 
+
 
   form {
     padding: 20px;

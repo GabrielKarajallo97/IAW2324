@@ -9,20 +9,20 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-  <?php
-            $totalq = "SELECT COUNT(*) as total FROM incidencia";
-            $resultado = mysqli_query($conn, $totalq);
-            $total = mysqli_fetch_assoc($resultado)['total'];
+    <?php
+    $totalq = "SELECT COUNT(*) as total FROM incidencia";
+    $resultado = mysqli_query($conn, $totalq);
+    $total = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
-            $resultado = mysqli_query($conn, $totalp);
-            $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalp);
+    $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
-            $resultado = mysqli_query($conn, $totalr);
-            $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalr);
+    $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
-  ?>
+    ?>
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -34,16 +34,29 @@
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales: <?php echo $total?></a>
+          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales:
+            <?php echo $total ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
+          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes:
+            <?php echo $totalpendientes ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
+          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas:
+            <?php echo $totalresuelta ?>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
+          </a>
         </li>
       </ul>
     </div>
@@ -76,6 +89,7 @@
 
         while ($row = mysqli_fetch_assoc($vista_incidencias)) {
           $id = $row['id'];
+          $usuario = $row['usuario'];
           $planta = $row['planta'];
           $aula = $row['aula'];
           $descripcion = $row['descripcion'];
@@ -85,6 +99,7 @@
           $comentario = $row['comentario'];
           echo "<tr >";
           echo " <th scope='row' >{$id}</th>";
+          echo " <th scope='row' >{$usuario}</th>";
           echo " <td > {$planta}</td>";
           echo " <td > {$aula}</td>";
           echo " <td >{$descripcion} </td>";
@@ -92,10 +107,21 @@
           echo " <td >{$fecha_revision} </td>";
           echo " <td >{$fecha_resolucion} </td>";
           echo " <td >{$comentario} </td>";
-          echo " <td class='text-center'> <a href='view.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i>  </a> </td>";
-          echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
-          echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
-          echo " </tr> ";
+          if ($fecha_resolucion == '0000-00-00') {
+            echo "<td> Pendiente </td>";
+          } else if ($fecha_resolucion != '0000-00-00') {
+            echo "<td scope='row' > <mark>Resuelta</mark>
+            <style>
+            /* Estilos para el texto resaltado */
+              mark {
+                 background-color: #ffcc00; /* Color de fondo */
+                 color: #333; /* Color del texto */
+                 padding: 0.2em; /* Espacio interior */
+                 border-radius: 4px; /* Bordes redondeados */
+                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+                }
+            </style> </td>";
+          }
         }
        
         ?>

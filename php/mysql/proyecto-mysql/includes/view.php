@@ -1,5 +1,60 @@
 <?php  include '../header.php'?>
 <?php session_start(); ?>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <?php
+    $totalq = "SELECT COUNT(*) as total FROM incidencia";
+    $resultado = mysqli_query($conn, $totalq);
+    $total = mysqli_fetch_assoc($resultado)['total'];
+
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalp);
+    $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
+
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+    $resultado = mysqli_query($conn, $totalr);
+    $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
+
+    ?>
+    <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a href="home.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
+        </li>
+        <li class="nav-item">
+          <a href="create.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
+            incidencia</a>
+        </li>
+        <li class="nav-item">
+          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales:
+            <?php echo $total ?>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes:
+            <?php echo $totalpendientes ?>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas:
+            <?php echo $totalresuelta ?>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <h1 class="text-center">Detalles de incidencia</h1>
   <div class="container">
     <table class="table table-striped table-bordered table-hover">
