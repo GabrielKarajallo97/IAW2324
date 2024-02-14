@@ -1,5 +1,12 @@
 <?php include "../header.php" ?>
-<?php session_start(); ?>
+<?php session_start(); 
+if ($_SESSION['user']) {
+
+} else {
+  header("location: ../index.php");
+}
+?>
+
 <?php
 if (isset($_POST['crear'])) {
   $planta = htmlspecialchars($_POST['planta']);
@@ -35,11 +42,7 @@ if (isset($_POST['crear'])) {
     echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
   }
 }
-if ($_SESSION['user']) {
 
-} else {
-  header("location: ../index.php");
-}
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -102,7 +105,7 @@ if ($_SESSION['user']) {
       <div class="form-group">
         <label for="planta" class="form-label">Planta</label>
         <select name="planta" id="planta" class="form-select" aria-label="Default select example">
-          <option selected>Seleccione Planta</option>
+        <option value="" selected disabled>Seleccione Planta</option>
           <option value="baja">Baja</option>
           <option value="primera">Primera</option>
           <option value="segunda">Segunda</option>
@@ -111,32 +114,46 @@ if ($_SESSION['user']) {
 
       <div class="form-group">
         <label for="aula" class="form-label">Aula</label>
-        <select name="aula" id="aula" class="form-select" aria-label="Default select example">
-          <option selected>Seleccione Aula</option>
-          <option value="100">100</option>
-          <option value="101">101</option>
-          <option value="102">102</option>
-          <?php
-          /*$aula = array(
-              'baja' => array('1', '2', '3'),
-              'primera' => array('10', '20', '30'),
-              'segunda' => array('100', '200', '300'),
-          );
-          // Obtener el valor seleccionado de planta
-          $planta_seleccionada = isset($_POST['planta']) ? $_POST['planta'] : '';
-          // Generar opciones de aula basadas en la planta seleccionada
-          foreach ($aula[$planta_seleccionada] as $opcion) {
-              echo "<option value=\"$opcion\">$opcion</option>";
-          }*/
-          ?>
-        </select>
+    <select name="aula" id="aula" class="form-select" aria-label="Default select example" required>
+      <option value="" selected disabled>Seleccione Aula</option>
+    </select>
+      </div>
+    <script>
+  document.getElementById('planta').addEventListener('change', function() {
+    var planta = this.value;
+    var aulaSelect = document.getElementById('aula');
+    aulaSelect.innerHTML = ''; // Limpiar las opciones anteriores
+
+    if (planta === 'baja') {
+      addOption(aulaSelect, '1', 'Aula 1');
+      addOption(aulaSelect, '2', 'Aula 2');
+      addOption(aulaSelect, '3', 'Aula 3');
+    } else if (planta === 'primera') {
+      addOption(aulaSelect, '10', 'Aula 10');
+      addOption(aulaSelect, '20', 'Aula 20');
+      addOption(aulaSelect, '30', 'Aula 30');
+    } else if (planta === 'segunda') {
+      addOption(aulaSelect, '100', 'Aula 100');
+      addOption(aulaSelect, '200', 'Aula 200');
+      addOption(aulaSelect, '300', 'Aula 300');
+    }
+  });
+
+  function addOption(selectElement, value, text) {
+    var option = document.createElement('option');
+    option.value = value;
+    option.textContent = text;
+    selectElement.appendChild(option);
+  }
+</script>
+
         <div class="form-group">
           <label for="descripcion" class="form-label">Descripcion</label>
-          <input type="text" name="descripcion" class="form-control">
+          <input type="text" name="descripcion" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="fecha_alta" class="form-label">Fecha Alta</label>
-          <input type="date" name="fecha_alta" class="form-control">
+          <input type="date" name="fecha_alta" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="fecha_revision" class="form-label">Fecha Revisión</label>

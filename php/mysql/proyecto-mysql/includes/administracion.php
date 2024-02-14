@@ -1,7 +1,6 @@
 <?php include "../header.php" ?>
 <?php session_start(); 
-if ($_SESSION['user']) {
-
+if ($_SESSION['user'] AND $row['perfil'] == 'administrador'){
 } else {
   header("location: ../index.php");
 }
