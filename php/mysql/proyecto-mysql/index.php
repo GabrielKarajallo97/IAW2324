@@ -37,8 +37,8 @@ if ($_POST) {
             $_SESSION['user'] = $usuario;
 
             // Verificar el perfil del usuario y redirigirlo
+            
             if ($row['perfil'] == 'administrador') {
-              
               header("location: includes/home.php");
               exit();
             } elseif ($row['perfil'] == 'profesor') {

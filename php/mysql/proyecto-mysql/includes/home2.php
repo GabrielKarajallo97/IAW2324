@@ -1,7 +1,7 @@
 <!-- Header -->
 <?php include "../header.php" ?>
 <?php session_start(); 
-if ($_SESSION['user'] && $row  ) {
+if ($_SESSION['user']) {
 } else {
   header("location: ../index.php");
 }
