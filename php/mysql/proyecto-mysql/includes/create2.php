@@ -1,5 +1,16 @@
 <?php include "../header.php" ?>
-<?php session_start(); ?>
+<?php 
+session_set_cookie_params(0);
+session_start(); 
+$_SESSION['perfil'] = 'administrador';
+if ($_SESSION['user']){
+  if ($_SESSION['$perfil'] == 'administrador'){
+
+  }
+} else {
+  header("location: ../index.php");
+}
+ ?>
 <?php
 if (isset($_POST['crear'])) {
   $planta = htmlspecialchars($_POST['planta']);
@@ -60,6 +71,9 @@ if ($_SESSION['user']) {
         </li>
         <li class="nav-item">
           <a href="" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
         </li>
       </ul>
     </div>

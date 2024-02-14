@@ -43,7 +43,7 @@ if ($_SESSION['user']) {
           <a href="" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión</a>
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Cerrar sesión</a>
         </li>
       </ul>
     </div>

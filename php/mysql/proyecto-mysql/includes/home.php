@@ -51,10 +51,10 @@ if ($_SESSION['user']) {
           <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Usuarios</a>
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Usuarios</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Cerrar sesión
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
           </a>
         </li>
       </ul>

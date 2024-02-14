@@ -1,11 +1,16 @@
 <?php include "../header.php" ?>
-<?php session_start();
-if ($_SESSION['user']) {
+<?php 
+session_set_cookie_params(0);
+session_start(); 
+$_SESSION['perfil'] = 'administrador';
+if ($_SESSION['user']){
+  if ($_SESSION['$perfil'] == 'administrador'){
 
+  }
 } else {
-    header("location: ../index.php");
+  header("location: ../index.php");
 }
-?>
+ ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php
@@ -51,10 +56,10 @@ if ($_SESSION['user']) {
           <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Usuarios</a>
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Usuarios</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
           </a>
         </li>
       </ul>
