@@ -10,7 +10,7 @@ if ($_SESSION['user']){
 } else {
   header("location: ../index.php");
 }
- ?>
+ 
 if (isset($_POST['crear'])) {
   $planta = htmlspecialchars($_POST['planta']);
   $aula = htmlspecialchars($_POST['aula']);
