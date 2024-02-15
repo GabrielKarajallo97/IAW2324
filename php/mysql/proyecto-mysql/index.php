@@ -40,7 +40,7 @@ if ($_POST) {
               session_start();
               $_SESSION['user'] = $usuario;
               $_SESSION['perfil'] = $perfil;
-             
+              
               header("location: includes/home.php");
               exit();
 
