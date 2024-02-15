@@ -1,8 +1,9 @@
 <!-- Header -->
 <?php include "../header.php" ?>
-<?php session_start(); 
-if ($_SESSION['user']) {
-} else {
+<?php 
+session_set_cookie_params(0);
+session_start(); 
+if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
   header("location: ../index.php");
 }
 ?>

@@ -33,15 +33,22 @@ if ($_POST) {
     $result = mysqli_query($enlace, $query);
     if (mysqli_num_rows($result) == 1) {
      $row = mysqli_fetch_assoc($result);
-            session_start();
-            $_SESSION['user'] = $usuario;
-
+     $perfil= $row['perfil'];
+       
             // Verificar el perfil del usuario y redirigirlo
-            
             if ($row['perfil'] == 'administrador') {
+              session_start();
+              $_SESSION['user'] = $usuario;
+              $_SESSION['perfil'] = $perfil;
+             
               header("location: includes/home.php");
               exit();
+
             } elseif ($row['perfil'] == 'profesor') {
+              session_start();
+              $_SESSION['user'] = $usuario;
+              $_SESSION['perfil'] = $perfil;
+             
               header("location: includes/home2.php");
               
     } 

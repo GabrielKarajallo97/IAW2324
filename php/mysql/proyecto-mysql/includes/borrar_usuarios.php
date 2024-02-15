@@ -1,5 +1,16 @@
 <?php include "../header.php";
-session_start(); ?>
+session_set_cookie_params(0);
+session_start(); 
+$_SESSION['perfil'] = 'administrador';
+if ($_SESSION['user']){
+  if ($_SESSION['$perfil'] == 'administrador'){
+
+  }
+} else {
+  header("location: ../index.php");
+}
+
+?>
 <?php 
    // Verificar si se ha proporcionado el nombre de usuario a eliminar
 if(isset($_GET['eliminar'])) {

@@ -1,5 +1,6 @@
 <?php include "../header.php";
-session_start(); ?>
+session_start();
+?>
 <?php 
      if(isset($_GET['eliminar']))
      {

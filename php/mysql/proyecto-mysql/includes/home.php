@@ -1,10 +1,12 @@
 <!-- Header -->
 <?php include "../header.php" ?>
-<?php session_start();
-if ($_SESSION['user']) {
-} else {
+<?php 
+session_set_cookie_params(0);
+session_start(); 
+if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'administrador' ){
   header("location: ../index.php");
 }
+
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">

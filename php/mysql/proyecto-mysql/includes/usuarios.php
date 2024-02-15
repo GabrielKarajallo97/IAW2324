@@ -2,12 +2,7 @@
 <?php 
 session_set_cookie_params(0);
 session_start(); 
-$_SESSION['perfil'] = 'administrador';
-if ($_SESSION['user']){
-  if ($_SESSION['$perfil'] == 'administrador'){
-
-  }
-} else {
+if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'administrador' ){
   header("location: ../index.php");
 }
  ?>
@@ -66,7 +61,7 @@ if ($_SESSION['user']){
     </div>
   </div>
 </nav>
-
+<h1 class="text-center">Eliminar un Usuario</h1>
 
 <div class="container">
     <table class="table table-striped table-bordered table-hover">
@@ -124,7 +119,7 @@ if ($_SESSION['user']){
     border: 0px;
     box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
     position: relative;
-    top: 15%;
+    top: 10%;
     max-width: 700px;
     left: 0%;
   }

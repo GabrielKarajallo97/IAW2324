@@ -2,12 +2,7 @@
 <?php 
 session_set_cookie_params(0);
 session_start(); 
-$_SESSION['perfil'] = 'administrador';
-if ($_SESSION['user']){
-  if ($_SESSION['$perfil'] == 'administrador'){
-
-  }
-} else {
+if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
   header("location: ../index.php");
 }
  ?>
