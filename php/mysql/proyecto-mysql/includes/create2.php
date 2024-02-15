@@ -75,51 +75,78 @@ if ($_SESSION['user']) {
   </div>
 </nav>
 <div class="caja">
-<div class="container">
-  <form action="" method="post">
-    <div class="form-group">
-      <label for="planta" class="form-label">Planta</label>
-      <select name="planta" class="form-select" aria-label="Default select example">
-        <option selected>Seleccione Planta</option>
-        <option value="Baja">Baja</option>
-        <option value="Primera">Primera</option>
-        <option value="Segunda">Segunda</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="aula" class="form-label">Aula</label>
-      <select name="aula" class="form-select" aria-label="Default select example">
-        <option selected>Seleccione Aula</option>
-        <option value="100">100</option>
-        <option value="101">101</option>
-        <option value="102">102</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="descripcion" class="form-label">Descripcion</label>
-      <input type="text" name="descripcion" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="fecha_alta" class="form-label">Fecha Alta</label>
-      <input type="date" name="fecha_alta" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="fecha_revision" class="form-label">Fecha Revisión</label>
-      <input type="date" name="fecha_revision" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="fecha_resolucion" class="form-label">Fecha Solución</label>
-      <input type="date" name="fecha_resolucion" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="comentario" class="form-label">Comentario</label>
-      <input type="text" name="comentario" class="form-control">
-    </div>
-    <div class="form-group boton">
-      <button type="submit" name="crear" class="btn btn-primary mt-2">Añadir</button>
-    </div>
-  </form>
-</div>
+  <div class="container">
+    <form action="" method="post">
+      <div class="form-group">
+        <label for="planta" class="form-label">Planta</label>
+        <select name="planta" id="planta" class="form-select" aria-label="Default select example">
+        <option value="" selected disabled>Seleccione Planta</option>
+          <option value="baja">Baja</option>
+          <option value="primera">Primera</option>
+          <option value="segunda">Segunda</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="aula" class="form-label">Aula</label>
+    <select name="aula" id="aula" class="form-select" aria-label="Default select example" required>
+      <option value="" selected disabled>Seleccione Aula</option>
+    </select>
+      </div>
+    <script>
+  document.getElementById('planta').addEventListener('change', function() {
+    var planta = this.value;
+    var aulaSelect = document.getElementById('aula');
+    aulaSelect.innerHTML = ''; // Limpiar las opciones anteriores
+
+    if (planta === 'baja') {
+      addOption(aulaSelect, '1', 'Aula 1');
+      addOption(aulaSelect, '2', 'Aula 2');
+      addOption(aulaSelect, '3', 'Aula 3');
+    } else if (planta === 'primera') {
+      addOption(aulaSelect, '10', 'Aula 10');
+      addOption(aulaSelect, '20', 'Aula 20');
+      addOption(aulaSelect, '30', 'Aula 30');
+    } else if (planta === 'segunda') {
+      addOption(aulaSelect, '100', 'Aula 100');
+      addOption(aulaSelect, '200', 'Aula 200');
+      addOption(aulaSelect, '300', 'Aula 300');
+    }
+  });
+
+  function addOption(selectElement, value, text) {
+    var option = document.createElement('option');
+    option.value = value;
+    option.textContent = text;
+    selectElement.appendChild(option);
+  }
+</script>
+
+        <div class="form-group">
+          <label for="descripcion" class="form-label">Descripcion</label>
+          <input type="text" name="descripcion" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="fecha_alta" class="form-label">Fecha Alta</label>
+          <input type="date" name="fecha_alta" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="fecha_revision" class="form-label">Fecha Revisión</label>
+          <input type="date" name="fecha_revision" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="fecha_resolucion" class="form-label">Fecha Solución</label>
+          <input type="date" name="fecha_resolucion" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="comentario" class="form-label">Comentario</label>
+          <input type="text" name="comentario" class="form-control">
+        </div>
+        <div class="form-group boton">
+          <button type="submit" name="crear" class="btn btn-primary mt-2">Añadir</button>
+        </div>
+    </form>
+  </div>
 </div>
 <h1 class="text-center">Añadir Incidencias</h1>
 
