@@ -16,7 +16,7 @@ if ($_SESSION['user']){
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php
-    $totalq = "SELECT COUNT(*) as total FROM incidencia where";
+    $totalq = "SELECT COUNT(*) as total FROM incidencia";
     $resultado = mysqli_query($conn, $totalq);
     $total = mysqli_fetch_assoc($resultado)['total'];
 
