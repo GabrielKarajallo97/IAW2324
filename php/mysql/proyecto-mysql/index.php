@@ -197,5 +197,29 @@ if ($_POST) {
     padding: 10px;
     font-weight: bold;
   }
+
+/*---------------------RESPONSIVE--------------------- */
+/
+@media only screen and (max-width: 390px) {
+  .text-center {
+    position: relative;
+    left: 15%;
+}
+.contrainer {
+    position: absolute;
+    top: 38%;
+    left: 45%;
+}
+
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media only screen and (min-width: 1025px) {
+
+}
+
+
 </style>
 <?php include "footer.php" ?>
