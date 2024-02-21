@@ -1,26 +1,24 @@
-<?php include "../header.php" ?>
-<?php 
-session_set_cookie_params(0);
+<?php  include '../header.php'?>
+<?php session_start(); 
 session_start(); 
-session_start(); 
-if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
+if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'direccion'){
    
 } else{
   header("location: ../index.php");
-}
- ?>
+}?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php
-    $totalq = "SELECT COUNT(*) as total FROM incidencia";
+    $user_direc = $_SESSION['user'];
+    $totalq = "SELECT COUNT(*) as total FROM incidencia  WHERE usuario = '$user_direc'";
     $resultado = mysqli_query($conn, $totalq);
     $total = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00' AND usuario = '$user_direc'";
     $resultado = mysqli_query($conn, $totalp);
     $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00' AND usuario = '$user_direc'";
     $resultado = mysqli_query($conn, $totalr);
     $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
@@ -29,10 +27,10 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="home.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
+          <a href="home3.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
+          <a href="create3.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
             incidencia</a>
         </li>
         <li class="nav-item">
@@ -51,79 +49,69 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
           </a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i>  Crear usuario</a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Administración Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
           </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<h1 class="text-center">Adminisrar Usuario</h1>
-
-<div class="container">
+<h1 class="text-center">Detalles de incidencia</h1>
+  <div class="container">
     <table class="table table-striped table-bordered table-hover">
-        <thead class="table">
-            <tr>
-                <th scope="col">Usuario</th>
-                <th scope="col">Nº Incidencias</th>
-                <th scope="col">Perfil</th>
-                <th scope="col" colspan="3" class="text-center">Eliminar</th>
-            </tr>
-        </thead>
+      <thead class="table-dark">
+        <tr>
+              <th  scope="col">ID</th>
+              <th  scope="col">Planta</th>
+              <th  scope="col">Aula</th>
+              <th  scope="col">Descripción</th>
+              <th  scope="col">Fecha alta</th>
+              <th  scope="col">Fecha revisión</th>
+              <th  scope="col">Fecha solución</th>
+              <th  scope="col">Comentario</th>
+        </tr>  
+      </thead>
         <tbody>
-            <tr>
+          <tr>
+               
+            <?php
+              if (isset($_GET['incidencia_id'])) {
+                  $incidenciaid = htmlspecialchars($_GET['incidencia_id']); 
+                  $query="SELECT * FROM incidencia WHERE id = {$incidenciaid} LIMIT 1";  
+                  $vista_incidencias= mysqli_query($conn,$query);            
 
+                  while($row = mysqli_fetch_assoc($vista_incidencias))
+                  {
+                    $id = $row['id'];                
+                    $planta = $row['planta'];        
+                    $aula = $row['aula'];         
+                    $descripcion = $row['descripcion'];        
+                    $fecha_alta = $row['fecha_alta'];        
+                    $fecha_revision = $row['fecha_revision'];        
+                    $fecha_resolucion = $row['fecha_resolucion'];        
+                    $comentario = $row['comentario'];
 
-
-                <?php
-                $query = "SELECT * FROM usuarios";
-                $vista_usuarios = mysqli_query($conn, $query);
-                
-                while ($row = mysqli_fetch_assoc($vista_usuarios)) {
-                    $username = $row['username'];
-                    $perfil = $row['perfil'];
-
-                    $totalq = "SELECT COUNT(*) as incidencias FROM incidencia WHERE usuario = '$username'";
-                    $resultado = mysqli_query($conn, $totalq);
-                    $total_row = mysqli_fetch_assoc($resultado);
-                    $total_incidencias = $total_row['incidencias'];
-
-                    echo "<tr >";
-                    echo " <td> {$username}</td>";
-                    echo " <td>{$total_incidencias}</td>";
-                    echo " <td > {$perfil}</td>";
-                    echo " <td class='text-center'>  <a href='borrar_usuarios.php?eliminar={$username}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
-                    echo " </tr> ";
+                        echo "<tr >";
+                        echo " <td >{$id}</td>";
+                        echo " <td > {$planta}</td>";
+                        echo " <td > {$aula}</td>";
+                        echo " <td >{$descripcion} </td>"; 
+                        echo " <td >{$fecha_alta} </td>";
+                        echo " <td >{$fecha_revision} </td>";
+                        echo " <td >{$fecha_resolucion} </td>";
+                        echo " <td >{$comentario} </td>";
+                        echo " </tr> ";
+                  }
                 }
-                ?>
 
-
-
-
-            </tr>
+               
+            ?>
+          </tr>  
         </tbody>
     </table>
-</div>
-        <div class="form-group boton boton">
-          <button type="submit" name="crear" class="btn btn-primary mt-2"><a href="administracion.php">Crear usuario</a></button>
-        </div>
-
-
-<style>
-  .boton button{
-    position: absolute;
-    left: 45%;
-    top: 80%;
-    background-color: #b2bfcf;
-    border: 0px;
-  }
-    body {
+  
+  <style>
+  body {
     display: block;
     justify-content: center;
     align-items: center;
@@ -138,17 +126,14 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
     background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1)
   }
-/*-----------Contenedor--------------*/
-.container {
+
+  /*-----------Contenedor--------------*/
+  .container {
     background-color: #f3f4f5;
     border-radius: 8px;
     padding: 0px;
     border: 0px;
     box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
-    position: relative;
-    top: 10%;
-    max-width: 700px;
-    left: 0%;
   }
 
   /*-------Titulo---------------*/
@@ -209,16 +194,4 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
     border-width: 0;
     padding: 10px;
   }
-
-
-  .btn-danger {
-    color: #fff;
-    background-color: #b2bfcf;
-    border: 0px;
-  }
-
-
-</style>
-
-
-
+<?php include "../footer.php" ?>

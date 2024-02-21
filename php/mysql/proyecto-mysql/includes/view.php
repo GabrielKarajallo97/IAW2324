@@ -48,10 +48,10 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
           </a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Crear usuario</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Usuarios</a>
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administracion Usuarios</a>
         </li>
         <li class="nav-item">
           <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
@@ -109,11 +109,7 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
                   }
                 }
 
-                if($_SESSION['user']){
-
-                } else{
-                  header("location: ../index.php");
-                }
+               
             ?>
           </tr>  
         </tbody>

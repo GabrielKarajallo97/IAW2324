@@ -2,12 +2,11 @@
 <?php 
 session_set_cookie_params(0);
 session_start(); 
-if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
-   
-} else{
+if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'direccion'){
   header("location: ../index.php");
 }
- 
+ ?>
+<?php
 if (isset($_POST['crear'])) {
   $planta = htmlspecialchars($_POST['planta']);
   $aula = htmlspecialchars($_POST['aula']);
@@ -16,84 +15,61 @@ if (isset($_POST['crear'])) {
   $fecha_alta = htmlspecialchars($_POST['fecha_alta']);
   $fecha_revision = htmlspecialchars($_POST['fecha_revision']);
   $fecha_resolucion = htmlspecialchars($_POST['fecha_resolucion']);
-
+ 
   $usuario = $_SESSION["user"];
-  $query = "INSERT INTO incidencia(usuario, planta, aula, descripcion, fecha_alta, fecha_revision, fecha_resolucion, comentario) VALUES('{$usuario}', '{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_revision}','{$fecha_resolucion}','{$comentario}')";
+  $query = "INSERT INTO incidencia(usuario, planta, aula, descripcion, fecha_alta, fecha_revision, fecha_resolucion, comentario) VALUES('{$usuario}','{$planta}','{$aula}','{$descripcion}','{$fecha_alta}','{$fecha_revision}','{$fecha_resolucion}','{$comentario}')";
   $resultado = mysqli_query($conn, $query);
 
   if (!$resultado) {
     echo "Algo ha ido mal añadiendo la incidencia: " . mysqli_error($conn);
   } else {
-    if (!empty($fecha_resolucion)) {
-      // Obtener el correo electrónico del usuario
-      $query_usuario = "SELECT email FROM usuario WHERE username = '{$usuario}'";
-      $resultado_usuario = mysqli_query($conn, $query_usuario);
-      $row_usuario = mysqli_fetch_assoc($resultado_usuario);
-      $email_usuario = $row_usuario['email'];
-
-      // Enviar correo electrónico al usuario
-      $to = $email_usuario;
-      $subject = "Incidencia Resuelta";
-      $message = "Estimado $usuario,\n\nTu incidencia ha sido resuelta. ¡Gracias por tu paciencia!";
-      $headers = "From: gabrielkarajallo97@iesamachado.org";
-
-      mail($to, $subject, $message, $headers);
-    }
     echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
   }
 }
+if ($_SESSION['user']) {
 
+} else {
+  header("location: ../index.php");
+}
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <?php
-    $totalq = "SELECT COUNT(*) as total FROM incidencia";
-    $resultado = mysqli_query($conn, $totalq);
-    $total = mysqli_fetch_assoc($resultado)['total'];
+  <?php
+            $user_direc = $_SESSION['user'];
+            $totalq = "SELECT COUNT(*) as total FROM incidencia WHERE usuario = '$user_direc'";
+            $resultado = mysqli_query($conn, $totalq);
+            $total = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
-    $resultado = mysqli_query($conn, $totalp);
-    $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
+            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00' AND usuario = '$user_direc'";
+            $resultado = mysqli_query($conn, $totalp);
+            $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
-    $resultado = mysqli_query($conn, $totalr);
-    $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
+            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00' AND usuario = '$user_direc'";
+            $resultado = mysqli_query($conn, $totalr);
+            $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
-    ?>
+  ?>
     <!-- <a class="navbar-brand" href="#">Incidencias</a> -->
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="home.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
+          <a href="home3.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
+          <a href="create2.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
             incidencia</a>
         </li>
         <li class="nav-item">
-          <a href="totales.php" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales:
-            <?php echo $total ?>
-          </a>
+          <a href="" class='btn  mb-2'> <i class="bi bi-bookmarks"></i> Incidencias Totales: <?php echo $total?></a>
         </li>
         <li class="nav-item">
-          <a href="pendientes.php" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes:
-            <?php echo $totalpendientes ?>
-          </a>
+          <a href="" class='btn  mb-2'> <i class="bi bi-bookmark-dash"></i> Incidencias Pendientes: <?php echo $totalpendientes?></a>
         </li>
         <li class="nav-item">
-          <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas:
-            <?php echo $totalresuelta ?>
-          </a>
+          <a href="" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas: <?php echo $totalresuelta?></a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Crear usuario</a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Administracion Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-          </a>
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
         </li>
       </ul>
     </div>
@@ -178,11 +154,6 @@ if (isset($_POST['crear'])) {
 
 
 <style>
-  #aula {
-    z-index: 9999;
-    /* Ajusta el índice Z según sea necesario */
-  }
-
   body {
     display: block;
     justify-content: center;
@@ -200,23 +171,23 @@ if (isset($_POST['crear'])) {
 
   /*----------NAV--------------------*/
   nav {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-  .navbar {
-    position: absolute;
-    top: 5%;
+      .navbar {
+        position: absolute;
+        top: 5%;
+        
+        width: 100%;
+      }
 
-    width: 100%;
-  }
-
-  .nav-item a {
-    border: 0px;
-    color: #fff;
-    margin-right: 10px;
-  }
+      .nav-item a {
+        border: 0px;
+        color: #fff;
+        margin-right: 10px;
+      }
 
 
   /*-----------Contenedor--------------*/
@@ -230,11 +201,11 @@ if (isset($_POST['crear'])) {
     box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 60%;
     transform: translate(-50%, -50%);
   }
 
-
+ 
 
   form {
     padding: 20px;

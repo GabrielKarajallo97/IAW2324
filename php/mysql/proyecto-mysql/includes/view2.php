@@ -21,15 +21,16 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php
-    $totalq = "SELECT COUNT(*) as total FROM incidencia";
+    $user_prof = $_SESSION['user'];
+    $totalq = "SELECT COUNT(*) as total FROM incidencia WHERE usuario = '$user_prof'";
     $resultado = mysqli_query($conn, $totalq);
     $total = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'AND usuario = '$user_prof'";
     $resultado = mysqli_query($conn, $totalp);
     $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00' AND usuario = '$user_prof'";
     $resultado = mysqli_query($conn, $totalr);
     $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 

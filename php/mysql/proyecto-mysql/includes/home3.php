@@ -3,7 +3,7 @@
 <?php 
 session_set_cookie_params(0);
 session_start(); 
-if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'profesor' ){
+if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'direccion' ){
   
 }else{
   header("location: ../index.php");
@@ -25,17 +25,17 @@ if ($result->num_rows > 0) {
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
   <?php
-            $user_prof = $_SESSION['user'];
+            $user_direc = $_SESSION['user'];
 
-            $totalq = "SELECT COUNT(*) as total FROM incidencia WHERE usuario = '$user_prof'";
+            $totalq = "SELECT COUNT(*) as total FROM incidencia WHERE usuario = '$user_direc'";
             $resultado = mysqli_query($conn, $totalq);
             $total = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00' AND usuario = '$user_prof' ";
+            $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00' AND usuario = '$user_direc'";
             $resultado = mysqli_query($conn, $totalp);
             $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00' AND usuario = '$user_prof'";
+            $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00' AND usuario = '$user_direc'";
             $resultado = mysqli_query($conn, $totalr);
             $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
@@ -44,10 +44,10 @@ if ($result->num_rows > 0) {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="home2.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
+          <a href="home3.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
         </li>
         <li class="nav-item">
-          <a href="create2.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
+          <a href="create3.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
             incidencia</a>
         </li>
         <li class="nav-item">
@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
     </div>
   </div>
 </nav>
-<h1 class="text-center">¡Bienvenid@ <?php echo $_SESSION["user"] . "!"; ?> </h1>
+<h1 class="text-center">Conectado como <?php echo $_SESSION["user"] . "!"; ?> </h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
     <thead class="table">
@@ -111,8 +111,8 @@ if ($result->num_rows > 0) {
           echo " <td >{$fecha_revision} </td>";
           echo " <td >{$fecha_resolucion} </td>";
           echo " <td >{$comentario} </td>";
-          echo " <td class='text-center'> <a href='view2.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i>  </a> </td>";
-          //echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
+          echo " <td class='text-center'> <a href='view3.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i>  </a> </td>";
+          echo " <td class='text-center' > <a href='update3.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
           //echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
           echo " </tr> ";
         }

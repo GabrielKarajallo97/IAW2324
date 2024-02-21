@@ -7,20 +7,19 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
     
 } else{
   header("location: ../index.php");
+} 
+setlocale(LC_TIME, 'es_ES.UTF-8');
+$usuario = $_SESSION['user'];
+$sql_select = "SELECT ultima_sesion FROM usuarios WHERE username= '$usuario'";
+$result = $conn->query($sql_select);
+if ($result->num_rows > 0) {
+    // Mostrar la última sesión
+    while($row = $result->fetch_assoc()) {
+        $ultima_sesion = strtotime($row["ultima_sesion"]);
+        $fecha_formato = strftime('%e de %B de %Y a las %H:%M', $ultima_sesion);
+        echo "<div style='text-align: right; margin: 10px; color: white;'>Última sesión iniciada: " . $fecha_formato . "</div>";
+    }
 }
-    $usuario = $_SESSION['user'];
-    $sql_select = "SELECT ultima_sesion FROM usuarios WHERE username= '$usuario'";
-    $result = $conn->query($sql_select);
-    if ($result->num_rows > 0) {
-      // Mostrar la última sesión
-      while($row = $result->fetch_assoc()) {
-        echo "<div style='text-align: right; margin: 10px; color: white;'>Última sesión iniciada: " . $row["ultima_sesion"] . "</div>";
-      }
-  }
-
-
-
-
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -64,10 +63,10 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
           </a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Crear usuario</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Usuarios</a>
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Administración Usuarios</a>
         </li>
         <li class="nav-item">
           <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
@@ -77,8 +76,11 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
     </div>
   </div>
 </nav>
-<h1 class="text-center">¡Bienvenid@
-  <?php echo $_SESSION["user"] . "!"; ?>
+<h1 class="text-center">Conectado como
+  <?php echo $_SESSION["user"];
+  
+  
+  ?>
 </h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
@@ -89,7 +91,7 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
         <th scope="col">Planta</th>
         <th scope="col">Aula</th>
         <th scope="col">Descripción</th>
-        <th scope="col">Fecha alta</th>
+        <a><th scope="col">Fecha alta</th></a>
         <th scope="col">Fecha revisión</th>
         <th scope="col">Fecha solución</th>
         <th scope="col">Comentario</th>
@@ -101,7 +103,7 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
         <?php
         $query = "SELECT * FROM incidencia";
         $vista_incidencias = mysqli_query($conn, $query);
-
+        $ordena_fecha = "SELECT * from incidencia order by fecha_alta DESC";
         while ($row = mysqli_fetch_assoc($vista_incidencias)) {
           $id = $row['id'];
           $usuario = $row['usuario'];

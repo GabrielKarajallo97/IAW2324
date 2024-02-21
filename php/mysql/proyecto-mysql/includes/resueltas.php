@@ -53,10 +53,10 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
           </a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Crear usuario</a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Usuarios</a>
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Administracion Usuarios</a>
         </li>
         <li class="nav-item">
           <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
@@ -109,21 +109,6 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
           echo " <td >{$fecha_revision} </td>";
           echo " <td >{$fecha_resolucion} </td>";
           echo " <td >{$comentario} </td>";
-          if ($fecha_resolucion == '0000-00-00') {
-            echo "<td> Pendiente </td>";
-          } else if ($fecha_resolucion != '0000-00-00') {
-            echo "<td scope='row' > <mark>Resuelta</mark>
-            <style>
-            /* Estilos para el texto resaltado */
-              mark {
-                 background-color: #ffcc00; /* Color de fondo */
-                 color: #333; /* Color del texto */
-                 padding: 0.2em; /* Espacio interior */
-                 border-radius: 4px; /* Bordes redondeados */
-                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-                }
-            </style> </td>";
-          }
         }
         ?>
       </tr>

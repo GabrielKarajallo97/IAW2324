@@ -3,7 +3,7 @@
 session_set_cookie_params(0);
 session_start(); 
 session_start(); 
-if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
+if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'direccion' ){
    
 } else{
   header("location: ../index.php");
@@ -57,15 +57,17 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php
-    $totalq = "SELECT COUNT(*) as total FROM incidencia";
+            $user_direc = $_SESSION['user'];
+
+    $totalq = "SELECT COUNT(*) as total FROM incidencia WHERE usuario = '$user_direc'";
     $resultado = mysqli_query($conn, $totalq);
     $total = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00' AND usuario = '$user_direc'";
     $resultado = mysqli_query($conn, $totalp);
     $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00' AND usuario = '$user_direc'";
     $resultado = mysqli_query($conn, $totalr);
     $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
@@ -74,10 +76,10 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="home.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
+          <a href="home3.php" class='btn  mb-2'> <i class="bi bi-house"></i> Inicio </a>
         </li>
         <li class="nav-item">
-          <a href="create.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
+          <a href="create3.php" class='btn  mb-2'> <i class="bi bi-patch-plus"></i> Añadir
             incidencia</a>
         </li>
         <li class="nav-item">
@@ -94,12 +96,6 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
           <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas:
             <?php echo $totalresuelta ?>
           </a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Crear usuario</a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Administracion Usuarios</a>
         </li>
         <li class="nav-item">
           <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
