@@ -4,6 +4,19 @@
   session_start(); 
   if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
     header("location: ../index.php");
+
+    $incidencia_id = $_GET['incidencia_id'];
+    // Consultar la base de datos para obtener la información de la incidencia
+    $stmt = $pdo->prepare("SELECT * FROM incidencias WHERE id = :incidencia_id");
+    $stmt->bindParam(':incidencia_id', $incidencia_id);
+    $stmt->execute();
+    $incidencia = $stmt->fetch();
+
+    if ($incidencia && $incidencia['usuario_id'] == $_SESSION['user']) {
+      header("location: ../view2.php");
+    
+    }
+
   }?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -45,12 +58,6 @@
           <a href="resueltas.php" class='btn  mb-2'><i class="bi bi-bookmark-check"></i> Incidencias Resueltas:
             <?php echo $totalresuelta ?>
           </a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Administración</a>
-        </li>
-        <li class="nav-item">
-          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Usuarios</a>
         </li>
         <li class="nav-item">
           <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión

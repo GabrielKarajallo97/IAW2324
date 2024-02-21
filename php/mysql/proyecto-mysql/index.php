@@ -29,32 +29,39 @@ if ($_POST) {
   // Intentamos la conexión con MySQL
   $enlace = mysqli_connect("sql311.thsite.top", "thsi_35760646", "?Qy3?f1l", "thsi_35760646_proyecto_mysql");
   if ($enlace) {
-    $query = "SELECT * FROM usuarios WHERE  username='" . mysqli_real_escape_string($enlace, $usuario) . "'AND password='" .  mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'";  
+    $query = "SELECT * FROM usuarios WHERE  username='" . mysqli_real_escape_string($enlace, $usuario) . "'AND password='" . mysqli_real_escape_string($enlace, base64_encode($contrasena)) . "'";
     $result = mysqli_query($enlace, $query);
     if (mysqli_num_rows($result) == 1) {
-     $row = mysqli_fetch_assoc($result);
-     $perfil= $row['perfil'];
-       
-            // Verificar el perfil del usuario y redirigirlo
-            if ($row['perfil'] == 'administrador') {
-              session_start();
-              $_SESSION['user'] = $usuario;
-              $_SESSION['perfil'] = $perfil;
-              
-              header("location: includes/home.php");
-              exit();
+      $row = mysqli_fetch_assoc($result);
+      $perfil = $row['perfil'];
 
-            } elseif ($row['perfil'] == 'profesor') {
-              session_start();
-              $_SESSION['user'] = $usuario;
-              $_SESSION['perfil'] = $perfil;
-             
-              header("location: includes/home2.php");
-              
-    } 
-  } else {
-    echo 
-    "<div class='container2'><div class='custom-alert alert alert-primary d-flex align-items-center' role='alert'>
+      // Verificar el perfil del usuario y redirigirlo
+      if ($row['perfil'] == 'administrador') {
+        session_start();
+        $_SESSION['user'] = $usuario;
+        $_SESSION['perfil'] = $perfil;
+        $_SESSION['fecha'] = $sql_select;
+
+        $currentDateTime = date("Y-m-d H:i:s");
+        $sql = "UPDATE usuarios SET ultima_sesion='$currentDateTime' WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+        if ($conn->query($sql) === TRUE) {
+          $sql_select = "SELECT ultima_sesion FROM usuarios WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+          $result = $conn->query($sql_select);
+          header("location: includes/home.php");
+          exit();
+        }
+        
+
+      } elseif ($row['perfil'] == 'profesor') {
+        session_start();
+        $_SESSION['user'] = $usuario;
+        $_SESSION['perfil'] = $perfil;
+
+        header("location: includes/home2.php");
+      }
+    } else {
+      echo
+        "<div class='container2'><div class='custom-alert alert alert-primary d-flex align-items-center' role='alert'>
       <svg xmlns='http://www.w3.org/2000/svg' class='bi bi-exclamation-triangle-fill flex-shrink-0 me-2' viewBox='0 0 16 16' role='img' aria-label='Warning:'>
         <path d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/>
       </svg>
@@ -63,13 +70,13 @@ if ($_POST) {
       </div>
     </div>
     </div>";
-  }
-  
-  }else {
+    }
+
+  } else {
     echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
     echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
     echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
- }
+  }
 }
 ?>
 <style>
@@ -78,6 +85,7 @@ if ($_POST) {
     width: 90%;
     margin: 0 auto;
   }
+
   .form-control {
     width: 100%;
     /* Ocupa todo el ancho del contenedor */
@@ -86,16 +94,19 @@ if ($_POST) {
     /* Ajusta el relleno según tus necesidades */
     border-radius: 10px;
   }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
       transform: translateY(-10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
+
   .custom-alert {
     display: flex;
     align-items: center;
@@ -114,6 +125,7 @@ if ($_POST) {
     animation: fadeIn 0.5s ease-out;
     /* Aplica la animación */
   }
+
   .custom-alert svg {
     width: 20px;
     /* Tamaño del icono */
@@ -123,12 +135,14 @@ if ($_POST) {
     fill: #1c5a91;
     /* Color del icono */
   }
+
   .custom-alert div {
     font-size: 14px;
     /* Tamaño del texto */
     color: #1c5a91;
     /* Color del texto */
   }
+
   /*------------body-------------*/
   body {
     display: flex;
@@ -145,6 +159,7 @@ if ($_POST) {
     background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1)
   }
+
   /*----------Contenedor--------*/
   .container {
     width: 100%;
@@ -160,6 +175,7 @@ if ($_POST) {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
   .container2 {
     position: absolute;
     top: 53%;
@@ -167,6 +183,7 @@ if ($_POST) {
     transform: translate(-50%, -50%);
     height: 5px;
   }
+
   /*------------Titulo------------*/
   .titulo {
     position: absolute;
@@ -174,6 +191,7 @@ if ($_POST) {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
   h1 {
     font-family: 'Paytone One', sans-serif;
     color: #fff;
@@ -182,15 +200,18 @@ if ($_POST) {
     text-align: center;
     margin-bottom: 20px;
   }
+
   h3 {
     font-family: 'Norican', cursive;
     color: #25424c;
     margin-bottom: 30px;
   }
+
   /*----------Boton------------*/
   .mb-2 {
     text-align: center;
   }
+
   .btn {
     background-color: #b2bfcf;
     border: 0px;
@@ -198,28 +219,22 @@ if ($_POST) {
     font-weight: bold;
   }
 
-/*---------------------RESPONSIVE--------------------- */
-/
-@media only screen and (max-width: 390px) {
-  .text-center {
-    position: relative;
-    left: 15%;
-}
-.contrainer {
-    position: absolute;
-    top: 38%;
-    left: 45%;
-}
+  /*---------------------RESPONSIVE--------------------- */
+  / @media only screen and (max-width: 390px) {
+    .text-center {
+      position: relative;
+      left: 15%;
+    }
+
+    .contrainer {
+      position: absolute;
+      top: 38%;
+      left: 45%;
+    }
 
 
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    @media only screen and (min-width: 769px) and (max-width: 1024px) {}
 
-}
-
-@media only screen and (min-width: 1025px) {
-
-}
-
-
+    @media only screen and (min-width: 1025px) {}
 </style>
 <?php include "footer.php" ?>

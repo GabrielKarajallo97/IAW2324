@@ -1,5 +1,11 @@
 <?php  include '../header.php'?>
-<?php session_start(); ?>
+<?php session_start(); 
+session_start(); 
+if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
+   
+} else{
+  header("location: ../index.php");
+}?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php

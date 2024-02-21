@@ -3,7 +3,9 @@
 <?php 
 session_set_cookie_params(0);
 session_start(); 
-if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
+if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'profesor' ){
+  
+}else{
   header("location: ../index.php");
 }
 ?>
@@ -11,6 +13,8 @@ if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
   <?php
+            $user_prof = $_SESSION['user'];
+
             $totalq = "SELECT COUNT(*) as total FROM incidencia";
             $resultado = mysqli_query($conn, $totalq);
             $total = mysqli_fetch_assoc($resultado)['total'];
@@ -64,7 +68,6 @@ if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
         <th scope="col">Fecha revisión</th>
         <th scope="col">Fecha solución</th>
         <th scope="col">Comentario</th>
-        <th scope="col">Estado</th>
         <th scope="col" colspan="3" class="text-center">Operaciones</th>
       </tr>
     </thead>
@@ -96,21 +99,6 @@ if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
           echo " <td >{$fecha_revision} </td>";
           echo " <td >{$fecha_resolucion} </td>";
           echo " <td >{$comentario} </td>";
-          if ($fecha_resolucion == '0000-00-00') {
-            echo "<td> Pendiente </td>";
-          } else if ($fecha_resolucion != '0000-00-00') {
-            echo "<td scope='row' > <mark>Resuelta</mark>
-            <style>
-            /* Estilos para el texto resaltado */
-              mark {
-                 background-color: #ffcc00; /* Color de fondo */
-                 color: #333; /* Color del texto */
-                 padding: 0.2em; /* Espacio interior */
-                 border-radius: 4px; /* Bordes redondeados */
-                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-                }
-            </style> </td>";
-          }
           echo " <td class='text-center'> <a href='view2.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i>  </a> </td>";
           //echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
           //echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
