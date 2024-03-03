@@ -19,6 +19,7 @@
 <!-- Incluye jQuery -->    
 </head>
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <h1>Función existe</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
@@ -34,7 +35,21 @@
             <img src="https://picsum.photos/200/200" alt="">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eaque sit nemo! Voluptatem expedita hic ipsam minima eligendi id, labore non veritatis <a href="">atque amet ipsum mollitia</a>  dignissimos? Mollitia, fuga ea!</p>
     <script>
-        /* Rellena aquí con el código jQuery */
+        $(document).ready(function(){
+            if($("p").length>0){
+                console.log("Existe la etiqueta p")
+            }else{
+                console.log("No existe la etiquita p")
+            }
+            if($("form").length>0){
+                console.log("Existe la etiqueta form")
+            }else{
+                console.log("No existe la etiquita form")
+            }
+
+        });
       </script>
+    
+
 </body>
 </html>

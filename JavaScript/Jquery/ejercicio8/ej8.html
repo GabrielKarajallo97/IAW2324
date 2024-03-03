@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>getters en jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
     <style>
         body {
             background-color: antiquewhite;
@@ -16,15 +20,13 @@
             border-radius: 10px;
         }
     </style>
-    <!-- Incluye aquí jQuery -->
-</head>
-<body>
+
     <h1>getters en jQuery</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
+    <p class="parrafo1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
     </p>
-    <img src="https://picsum.photos/330/220" alt="">
+    <img id="imagen_id" src="https://picsum.photos/330/220" alt="">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur voluptate sapiente necessitatibus! <a href=""> Non quisquam </a>quia molestias natus, ipsum deserunt fugit ea voluptatum repellat obcaecati nihil provident. Eos, repudiandae ipsa.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur voluptate sapiente necessitatibus! <a href=""> Non quisquam </a>quia molestias natus, ipsum deserunt fugit ea voluptatum repellat obcaecati nihil provident. Eos, repudiandae ipsa.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur voluptate sapiente necessitatibus! <a href=""> Non quisquam </a>quia molestias natus, ipsum deserunt fugit ea voluptatum repellat obcaecati nihil provident. Eos, repudiandae ipsa.</p>
@@ -37,7 +39,22 @@
     <button id="btn-parrafo">Obtener html de un párrafo</button>
 
     <script>
-       /* Rellena aquí el código jQuery */
+       $(document).ready(function(){
+            $("#btn-imagen").click(function(){
+                var imagen = $("#imagen_id").attr("src");
+                alert(imagen);
+            });
+
+            $("#btn-encabezado").click(function(){
+                var encabezado = $("head").html();
+                alert(encabezado);
+            });
+
+            $("#btn-parrafo").click(function(){
+                var parrafo = $("#parrafo").html();
+                alert(parrafo);
+            });
+       });
     </script>
 </body>
 </html>

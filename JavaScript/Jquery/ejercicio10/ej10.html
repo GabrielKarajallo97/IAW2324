@@ -21,9 +21,14 @@
 <body>
     <h1>El método val() de jQuery</h1>
     <input type="text" value="">
-    <button>Ver val()</button>
+    <button id="boton">Ver val()</button>
     <script>
-       /* Incluye aquí el código jQuery */
+       $(document).ready(function(){
+            $("#boton").click(function(){
+                var input = $("input[type='text']").val();
+                alert(input);
+            });
+       });
         
     </script>
 </body>
