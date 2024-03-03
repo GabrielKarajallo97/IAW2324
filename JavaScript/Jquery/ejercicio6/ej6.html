@@ -18,10 +18,34 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-        /* Código jQuery */
+        $(document).ready(function(){
+            $("#encabezados").html($("h1").length)
+            $("#parrafos").html($("p").length)
+            $("#imagenes").html($("img").length)
+            $("#enlaces").html($("a").length)
+
+        });
     </script>
 </head>
 <body>
+    <table>
+        <tr><th>Encabezados</th>
+            <th>Párrafos</th>
+            <th>Imágenes</th>
+            <th>Enlaces</th>
+        </tr>
+        <tr>
+            <td id="encabezados">
+
+            </td><td id="parrafos">
+
+            </td><td id="imagenes">
+
+            </td><td id="enlaces">
+
+            </td>
+        </tr>
+    </table>
     <h1>Contando elementos con jQuery</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod non vitae nobis dolor ratione blanditiis exercitationem accusamus pariatur, ut voluptas unde sint dignissimos. Quae numquam ipsum pariatur amet veritatis!
@@ -36,9 +60,6 @@
             "></ipsa>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio corrupti commodi temporibus vitae tempora accusamus, <a href="">illo perferendis eveniet</a> aliquam praesentium molestias quidem atque animi nisi adipisci quasi voluptates ad porro.</p>
             <img src="https://picsum.photos/200/200" alt="">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eaque sit nemo! Voluptatem expedita hic ipsam minima eligendi id, labore non veritatis <a href="">atque amet ipsum mollitia</a>  dignissimos? Mollitia, fuga ea!</p>
-    <table>
-        <tr><th>Encabezados</th><th>Párrafos</th><th>Imágenes</th><th>Enlaces</th></tr>
-        <tr><td id="encabezados"></td><td id="parrafos"></td><td id="imagenes"></td><td id="enlaces"></td></tr>
-    </table>
+    
 </body>
 </html>

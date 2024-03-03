@@ -22,9 +22,11 @@
         height: 300px;
         border: 1px solid black;
         margin: 20px;
+        display: none;
     }
     .roja {
         background-color: red;
+       
     }
     .verde {
         background-color: green;
@@ -37,10 +39,31 @@
         <div class="caja verde"></div>
     </div>
     <div class="contenedor">
-        <button id="btn-fadeIn">fadeIn</button><button id="btn-fadeOut">fadeOut</button><button id="btn-fadeToggle">fadeToggle</button>
+        <button id="btn-fadeIn">fadeIn</button>
+        <button id="btn-fadeOut">fadeOut</button>
+        <button id="btn-fadeToggle">fadeToggle</button>
     </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <script>
-        /* Rellena esta parte con el código jQuery */
+        $(document).ready(function(){
+            $("#btn-fadeIn").click(function(){
+                $(".caja").fadeIn()
+            });
+            $("#btn-fadeOut").click(function(){
+                $(".caja").fadeOut()
+            });
+            $("#btn-fadeToggle").click(function(){
+                $(".caja").fadeToggle()
+            });
+        });
     </script>
+
+
+
+   
+    
 </body>
 </html>
