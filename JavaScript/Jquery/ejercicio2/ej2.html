@@ -15,6 +15,17 @@
     <button id="btn-ocultar">Ocultar</button>
     <button id="btn-mostrar">Mostrar</button>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="ej2.js"></script>
+    <script>
+          $(document).ready(function(){ //asi se empieza a utilizar jquery
+            $("#btn-ocultar").click(function(){ //este es el evento click
+                $("#encabezado").hide(300); //Este es el efecto
+                $(".pares").hide(300);
+            });
+            $("#btn-mostrar").click(function(){ //este es el evento click
+                $("#encabezado").show(300);
+                $(".pares").show(300); //Este es el efecto
+            });
+        });
+    </script>
 </body>
 </html>
