@@ -8,23 +8,24 @@
 
 </head>
 <body>
+    <h1>Foto aleatoria</h1>
     <button id="boton">Random</button>
     <br>
     <img src="" alt="" id="resultado">
+    <p id="error"></p>
 </body>
 
 <script>
     $(document).ready(function(){
         $("#boton").click(function(){
             let api = 'RKVwXBPKUSU045nptNiFDWsp2ZqsZO34GpDWwbE0SC0';
-            
             $.ajax({
-            url: `https://api.unsplash.com/photos/random?client_id=${api}`,
-            
-            success: function(data){
+                type: "GET /photos/random",
+                url: `https://api.unsplash.com/photos/random?client_id=${api}`,
+                success: function(data){
                 $('#resultado').attr("src",data.urls.small);
-            }, error:function(error){
-                $("#resultado").html("<p>Se ha producido un error al cargar los datos</p>");
+                }, error:function(error){
+                $("#error").text("Parece que hubo un error al cargar la imagen")
             }
         });
         });
