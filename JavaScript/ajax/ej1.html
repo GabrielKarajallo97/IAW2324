@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
+</head>
+<body>
+    <label  for="">Ciudad</label>
+    <input id="ciudad" type="text">
+    <button id="buscar">Consultar</button>
+
+    <div id="resultado">
+
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $("#buscar").click(function(){
+            let ciudad = $("#ciudad").val();
+            let api = '345d523fcf2b334a6086385defcd93d7';
+            if(ciudad.trim() === ''){
+                $("#resultado").html('Introduce una ciudad')
+            }
+            
+            $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${api}&units=metric`,
+            
+            success: function(data){
+                $("#resultado").html(`<p>Latitud: ${data.coord.lat}</p><p>Longitud: ${data.coord.lon}</p>`)
+            }, error:function(error){
+                $("#resultado").html("<p>Se ha producido un error al cargar los datos</p>");
+            }
+        });
+        });
+    });
+
+
+</script>
+</html>

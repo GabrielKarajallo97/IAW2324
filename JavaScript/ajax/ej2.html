@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <button id="boton">Random</button>
+    <br>
+    <img src="" alt="" id="resultado">
+</body>
+
+<script>
+    $(document).ready(function(){
+        $("#boton").click(function(){
+            let api = 'RKVwXBPKUSU045nptNiFDWsp2ZqsZO34GpDWwbE0SC0';
+            
+            $.ajax({
+            url: `https://api.unsplash.com/photos/random?client_id=${api}`,
+            
+            success: function(data){
+                $('#resultado').attr("src",data.urls.small);
+            }, error:function(error){
+                $("#resultado").html("<p>Se ha producido un error al cargar los datos</p>");
+            }
+        });
+        });
+    });
+
+
+</script>
+</html>
