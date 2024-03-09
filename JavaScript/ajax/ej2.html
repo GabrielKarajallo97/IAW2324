@@ -12,6 +12,7 @@
     <button id="boton">Random</button>
     <br>
     <img src="" alt="" id="resultado">
+    <p id="description"></p>
     <p id="error"></p>
 </body>
 
@@ -20,10 +21,10 @@
         $("#boton").click(function(){
             let api = 'RKVwXBPKUSU045nptNiFDWsp2ZqsZO34GpDWwbE0SC0';
             $.ajax({
-                type: "GET /photos/random",
-                url: `https://api.unsplash.com/photos/random?client_id=${api}`,
+                url: `https://api.unsplash.com/photos/random?client_id=` + api,
                 success: function(data){
                 $('#resultado').attr("src",data.urls.small);
+                console.log(data);
                 }, error:function(error){
                 $("#error").text("Parece que hubo un error al cargar la imagen")
             }

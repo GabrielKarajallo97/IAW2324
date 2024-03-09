@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <h1>Buscar peícula</h1>
+    <input type="text" id="titulo_pelicula">
+    <button id="buscar">Buscar</button>
+    <div id="resultado"></div>
+    <p id="error"></p>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function(){
+
+        $('#buscar').click(function(){
+            let titulo = $('#titulo_pelicula').val();
+            let apiKey= 'b7a707e6';
+
+            $.ajax({
+
+                url: "http://www.omdbapi.com/?apikey="+apiKey+"&t="+titulo,
+                success: function (data){
+                    if(data.Title!=undefined){
+                        $('#resultado').html("<img src='"+data.Poster+"'><p>Título: <b>"+
+                    data.Title+"</b></p><p>Year: <b>"+
+                    data.Year+"</b></p><p>Duración: <b>"+
+                    data.Runtime+"</b></p></p><p>Género: <b>"+
+                    data.Genre+"</b></p></p><p>Director: <b>"+
+                    data.Director+"</b></p>");
+                    }
+                    else{
+                            $("#error").text("No se encontro la pelicula");
+                            $("#resultado").empty();
+                    }
+                    console.log(data);
+                },
+                error: function(){
+                    $("#error").text("Ha ocurrido un error")
+                }
+            }).fail(function(){
+                $("#error").text("Fallo de conexión")
+            })
+        }
+    )})
+
+</script>
+</html>

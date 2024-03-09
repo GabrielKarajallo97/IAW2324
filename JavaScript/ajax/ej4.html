@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</head>
+<body>
+  <label for="">Usuario GitHub</label>
+  <input type="text" name="" id="usuario">
+  <button id="buscar">Buscar</button>  
+    <br>
+    <p id="nombre"></p>
+    <p id="repos"></p>
+    <img id="imagen" src="" alt="">
+    <p id="error" ></p>
+</body>
+
+<script>
+    $(document).ready(function(){
+        $('#buscar').click(function(){
+           let usuario = $("#usuario").val();
+           
+           $.ajax({
+                url: `https://api.github.com/users/${usuario}`,
+
+                success: function (data){
+                   $("#imagen").html("<img src= '" + data.avatar_url + "'>")
+                   $("#nombre").html("<p> Nombre: "+ data.login + " </p>")
+                   $("#repos").html("<p> Repositorios publicados: "+ data.public_repos + " </p>")
+                    
+                   console.log(data);
+                },
+                error: function(){
+                    $("#error").text("Ha ocurrido un error")
+                }
+           })
+        });
+    });
+</script>
+</html>

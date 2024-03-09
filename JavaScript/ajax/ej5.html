@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <h1>Buscar Libros</h1>
+    <label for="">Nombre de libro</label>
+    <input type="text" name="" id="libro">
+    <button id="buscar">Buscar</button>
+    <p id="nombre"></p>
+</body>
+
+<script>
+    $(document).ready(function(){
+        $('#buscar').click(function(){
+           let libro = $("#libro").val();
+           let api = "AIzaSyCfqlNz2enxwVrVFYXlAtCRyr6T7PkatZY"
+
+           $.ajax({
+                url: `https://www.googleapis.com/books/v1/volumes?q=intitle:${libro}&key=${api}`,
+
+                success: function (data){
+                   $("#nombre").html("<p>"+ data.items.volumeInfo.title +"</p>")
+                    console.log(data);
+                    
+                },
+                error: function(){
+                    $("#error").text("Ha ocurrido un error")
+                }
+           })
+        });
+    });
+</script>
+</html>
