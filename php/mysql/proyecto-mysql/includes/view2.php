@@ -2,7 +2,9 @@
 <?php session_start(); 
   session_set_cookie_params(0);
   session_start(); 
-  if (!isset($_SESSION['user']) || $_SESSION['perfil'] !== 'profesor'){
+  if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'profesor' ){
+    
+  } else{
     header("location: ../index.php");
 
     $incidencia_id = $_GET['incidencia_id'];

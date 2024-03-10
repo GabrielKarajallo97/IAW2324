@@ -34,8 +34,12 @@ if ($_POST) {
     if (mysqli_num_rows($result) == 1) {
       $row = mysqli_fetch_assoc($result);
       $perfil = $row['perfil'];
+     
+
+
 
       // Verificar el perfil del usuario y redirigirlo
+      //Administrador
       if ($row['perfil'] == 'administrador') {
         session_start();
         $_SESSION['user'] = $usuario;
@@ -51,19 +55,40 @@ if ($_POST) {
           exit();
         }
         
-
+      //Profesor
       } elseif ($row['perfil'] == 'profesor') {
         session_start();
         $_SESSION['user'] = $usuario;
         $_SESSION['perfil'] = $perfil;
+        $_SESSION['fecha'] = $sql_select;
 
-        header("location: includes/home2.php");
+        $currentDateTime = date("Y-m-d H:i:s");
+        $sql = "UPDATE usuarios SET ultima_sesion='$currentDateTime' WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+        if ($conn->query($sql) === TRUE) {
+          $sql_select = "SELECT ultima_sesion FROM usuarios WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+          $result = $conn->query($sql_select);
+          header("location: includes/home2.php");
+          exit();
+        }
+        
+
+      //Director
       }  elseif ($row['perfil'] == 'direccion') {
         session_start();
         $_SESSION['user'] = $usuario;
         $_SESSION['perfil'] = $perfil;
+        $_SESSION['fecha'] = $sql_select;
+        
 
-        header("location: includes/home3.php");
+        $currentDateTime = date("Y-m-d H:i:s");
+        $sql = "UPDATE usuarios SET ultima_sesion='$currentDateTime' WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+        if ($conn->query($sql) === TRUE) {
+          $sql_select = "SELECT ultima_sesion FROM usuarios WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+          $result = $conn->query($sql_select);
+          header("location: includes/home3.php");
+
+          exit();
+        }
     } else {
      } echo
         "<div class='container2'><div class='custom-alert alert alert-primary d-flex align-items-center' role='alert'>
@@ -242,4 +267,3 @@ if ($_POST) {
 
     @media only screen and (min-width: 1025px) {}
 </style>
-<?php include "footer.php" ?>

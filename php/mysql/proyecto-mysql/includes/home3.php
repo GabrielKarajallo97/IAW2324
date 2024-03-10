@@ -8,18 +8,6 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'direccion' ){
 }else{
   header("location: ../index.php");
 }
-setlocale(LC_TIME, 'es_ES.UTF-8');
-$usuario = $_SESSION['user'];
-$sql_select = "SELECT ultima_sesion FROM usuarios WHERE username= '$usuario'";
-$result = $conn->query($sql_select);
-if ($result->num_rows > 0) {
-    // Mostrar la última sesión
-    while($row = $result->fetch_assoc()) {
-        $ultima_sesion = strtotime($row["ultima_sesion"]);
-        $fecha_formato = strftime('%e de %B de %Y a las %H:%M', $ultima_sesion);
-        echo "<div style='text-align: right; margin: 10px; color: white;'>Última sesión iniciada: " . $fecha_formato . "</div>";
-    }
-}
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
