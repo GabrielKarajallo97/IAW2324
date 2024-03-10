@@ -261,3 +261,5 @@ if (isset($_POST['crear'])) {
     border: 0px;
   }
 </style>
+
+<?php include "../footer.php" ?>

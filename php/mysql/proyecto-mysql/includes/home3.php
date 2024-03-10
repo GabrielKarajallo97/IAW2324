@@ -54,7 +54,7 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'direccion' ){
     </div>
   </div>
 </nav>
-<h1 class="text-center">Conectado como <?php echo $_SESSION["user"] . "!"; ?> </h1>
+<h1 class="text-center">¡Bienvenido  <?php echo $_SESSION["user"] . "!"; ?> </h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
     <thead class="table">
@@ -65,8 +65,8 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'direccion' ){
         <th scope="col">Aula</th>
         <th scope="col">Descripción</th>
         <th scope="col">Fecha alta</th>
-        <th scope="col">Fecha revisión</th>
-        <th scope="col">Fecha solución</th>
+        <th scope="col"><a href="home3_revision.php">Fecha revisión</a></th>
+        <th scope="col"><a href="home3_resolucion.php">Fecha solución</a></th>
         <th scope="col">Comentario</th>
         <th scope="col" colspan="3" class="text-center">Operaciones</th>
       </tr>

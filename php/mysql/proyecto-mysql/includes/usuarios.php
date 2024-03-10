@@ -119,7 +119,7 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
   .boton button{
     position: absolute;
     left: 45%;
-    top: 80%;
+    top: 65%;
     background-color: #b2bfcf;
     border: 0px;
   }
@@ -146,7 +146,6 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
     border: 0px;
     box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
     position: relative;
-    top: 10%;
     max-width: 700px;
     left: 0%;
   }
@@ -219,6 +218,7 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador'){
 
 
 </style>
+<?php include "../footer.php" ?>
 
 
 

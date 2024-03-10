@@ -48,6 +48,7 @@ if ($_POST) {
 
         $currentDateTime = date("Y-m-d H:i:s");
         $sql = "UPDATE usuarios SET ultima_sesion='$currentDateTime' WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+        
         if ($conn->query($sql) === TRUE) {
           $sql_select = "SELECT ultima_sesion FROM usuarios WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
           $result = $conn->query($sql_select);
@@ -64,6 +65,7 @@ if ($_POST) {
 
         $currentDateTime = date("Y-m-d H:i:s");
         $sql = "UPDATE usuarios SET ultima_sesion='$currentDateTime' WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+  
         if ($conn->query($sql) === TRUE) {
           $sql_select = "SELECT ultima_sesion FROM usuarios WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
           $result = $conn->query($sql_select);
@@ -82,6 +84,7 @@ if ($_POST) {
 
         $currentDateTime = date("Y-m-d H:i:s");
         $sql = "UPDATE usuarios SET ultima_sesion='$currentDateTime' WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
+
         if ($conn->query($sql) === TRUE) {
           $sql_select = "SELECT ultima_sesion FROM usuarios WHERE username='" . mysqli_real_escape_string ($enlace, $usuario) ."'";
           $result = $conn->query($sql_select);

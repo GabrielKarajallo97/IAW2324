@@ -201,7 +201,7 @@ if ($_SESSION['user']) {
     box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
     position: absolute;
     left: 50%;
-    top: 60%;
+    top: 45%;
     transform: translate(-50%, -50%);
   }
 
@@ -232,3 +232,4 @@ if ($_SESSION['user']) {
     border: 0px;
   }
 </style>
+<?php include "../footer.php" ?>

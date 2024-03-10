@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio7</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Buscar un GIF</h1>
+    <input type="text" id="i_buscar">
+    <button id="buscar">BUSCAR</button>
+    <div id="resultado"></div>
+    <p id="error"></p>
+    <script>
+        $(document).ready(function(){
+
+            $('#buscar').click(function(){
+                let g_buscar = $('#i_buscar').val();
+                let apiKey= 'poLD95TWIUPGbL5xHK9KEOelBTlST19d';
+
+                $.ajax({
+                    url: "https://api.giphy.com/v1/gifs/search?api_key="+apiKey+"&q="+g_buscar,
+                    success: function (data){
+                        var todos_gif=[];
+                        for(var i=0;i<data.pagination.count;i++){
+                            todos_gif=todos_gif+"<img src='"+data.data[i].images.original.url+"' alt='algo fue mal'>";
+                        }
+                        $('#resultado').html(todos_gif);
+                    },
+                    fail: function(){
+                        $("#error").text("Parece que hubo un error al cargar los gifs")
+                    }
+                }).fail(function(){
+                    $("#error").text("Parece que hubo un error de conexión")
+                })
+            }
+        )})
+
+    </script>
+</body>
+</html>

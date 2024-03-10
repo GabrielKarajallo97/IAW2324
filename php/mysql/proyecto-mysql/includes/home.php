@@ -65,8 +65,8 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
     </div>
   </div>
 </nav>
-<h1 class="text-center">Conectado como
-  <?php echo $_SESSION["user"];?>
+<h1 class="text-center">¡Bienvenido 
+  <?php echo $_SESSION["user"] . "!";?>
 </h1>
 <div class="container">
   <table class="table table-striped table-bordered table-hover">
@@ -78,8 +78,8 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
         <th scope="col">Aula</th>
         <th scope="col">Descripción</th>
         <a><th scope="col">Fecha alta</th></a>
-        <th scope="col">Fecha revisión</th>
-        <th scope="col">Fecha solución</th>
+        <th scope="col"><a href="home_revision.php">Fecha revisión</a></th>
+        <th scope="col"><a href="home_resolucion.php">Fecha solución</a></th>
         <th scope="col">Comentario</th>
         <th scope="col" colspan="3" class="text-center">Operaciones</th>
       </tr>
@@ -89,7 +89,7 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
         <?php
         $query = "SELECT * FROM incidencia";
         $vista_incidencias = mysqli_query($conn, $query);
-        $ordena_fecha = "SELECT * from incidencia order by fecha_alta DESC";
+        
         while ($row = mysqli_fetch_assoc($vista_incidencias)) {
           $id = $row['id'];
           $usuario = $row['usuario'];

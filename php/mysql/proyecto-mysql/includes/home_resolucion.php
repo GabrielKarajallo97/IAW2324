@@ -1,38 +1,27 @@
-<?php  include '../header.php'?>
-<?php session_start(); 
-  session_set_cookie_params(0);
-  session_start(); 
-  if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'profesor' ){
+<!-- Header -->
+<?php include "../header.php" ?>
+<?php 
+session_set_cookie_params(0);
+session_start(); 
+if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'administrador' ){
     
-  } else{
-    header("location: ../index.php");
+} else{
+  header("location: ../index.php");
+} 
 
-    $incidencia_id = $_GET['incidencia_id'];
-    // Consultar la base de datos para obtener la información de la incidencia
-    $stmt = $pdo->prepare("SELECT * FROM incidencias WHERE id = :incidencia_id");
-    $stmt->bindParam(':incidencia_id', $incidencia_id);
-    $stmt->execute();
-    $incidencia = $stmt->fetch();
-
-    if ($incidencia && $incidencia['usuario_id'] == $_SESSION['user']) {
-      header("location: ../view2.php");
-    
-    }
-
-  }?>
+?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php
-    $user_prof = $_SESSION['user'];
-    $totalq = "SELECT COUNT(*) as total FROM incidencia WHERE usuario = '$user_prof'";
+    $totalq = "SELECT COUNT(*) as total FROM incidencia";
     $resultado = mysqli_query($conn, $totalq);
     $total = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'AND usuario = '$user_prof'";
+    $totalp = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion = '0000-00-00'";
     $resultado = mysqli_query($conn, $totalp);
     $totalpendientes = mysqli_fetch_assoc($resultado)['total'];
 
-    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00' AND usuario = '$user_prof'";
+    $totalr = "SELECT COUNT(*) as total FROM incidencia WHERE fecha_resolucion <> '0000-00-00'";
     $resultado = mysqli_query($conn, $totalr);
     $totalresuelta = mysqli_fetch_assoc($resultado)['total'];
 
@@ -63,67 +52,75 @@
           </a>
         </li>
         <li class="nav-item">
-          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-gear"></i>Cerrar sesión
+          <a id="enlace_id" href="administracion.php" class='btn  mb-2'> <i class="bi bi-gear"></i> Crear usuario</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="usuarios.php" class='btn  mb-2'> <i class="bi bi-person-badge-fill"></i> Administración Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a id="enlace_id" href="cerrar_session.php" class='btn  mb-2'> <i class="bi bi-box-arrow-right"></i> Cerrar sesión
           </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<h1 class="text-center">Detalles de incidencia</h1>
-  <div class="container">
-    <table class="table table-striped table-bordered table-hover">
-      <thead class="table-dark">
-        <tr>
-              <th  scope="col">ID</th>
-              <th  scope="col">Planta</th>
-              <th  scope="col">Aula</th>
-              <th  scope="col">Descripción</th>
-              <th  scope="col">Fecha alta</th>
-              <th  scope="col">Fecha revisión</th>
-              <th  scope="col">Fecha solución</th>
-              <th  scope="col">Comentario</th>
-        </tr>  
-      </thead>
-        <tbody>
-          <tr>
-               
-            <?php
-              if (isset($_GET['incidencia_id'])) {
-                  $incidenciaid = htmlspecialchars($_GET['incidencia_id']); 
-                  $query="SELECT * FROM incidencia WHERE id = {$incidenciaid} LIMIT 1";  
-                  $vista_incidencias= mysqli_query($conn,$query);            
+<h1 class="text-center">¡Bienvenido 
+  <?php echo $_SESSION["user"] . "!";?>
+</h1>
+<div class="container">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="table">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Planta</th>
+        <th scope="col">Aula</th>
+        <th scope="col">Descripción</th>
+        <a><th scope="col">Fecha alta</th></a>
+        <th scope="col"><a href="home_revision.php">Fecha revisión</a></th>
+        <th scope="col"><a href="home_resolucion.php">Fecha solución</a></th>
+        <th scope="col">Comentario</th>
+        <th scope="col" colspan="3" class="text-center">Operaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <?php
+        $query = "SELECT * FROM incidencia order by fecha_resolucion DESC";
+        $vista_incidencias = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($vista_incidencias)) {
+          $id = $row['id'];
+          $usuario = $row['usuario'];
+          $planta = $row['planta'];
+          $aula = $row['aula'];
+          $descripcion = $row['descripcion'];
+          $fecha_alta = $row['fecha_alta'];
+          $fecha_revision = $row['fecha_revision'];
+          $fecha_resolucion = $row['fecha_resolucion'];
+          $comentario = $row['comentario'];
+          echo "<tr >";
+          echo " <th scope='row' >{$id}</th>";
+          echo " <th scope='row' >{$usuario}</th>";
+          echo " <td > {$planta}</td>";
+          echo " <td > {$aula}</td>";
+          echo " <td >{$descripcion} </td>";
+          echo " <td >{$fecha_alta} </td>";
+          echo " <td >{$fecha_revision} </td>";
+          echo " <td >{$fecha_resolucion} </td>";
+          echo " <td >{$comentario} </td>";
+          echo " <td class='text-center'> <a href='view.php?incidencia_id={$id}' class='btn btn-primary'> <i class='bi bi-eye'></i>  </a> </td>";
+          echo " <td class='text-center' > <a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i>  </a> </td>";
+          echo " <td class='text-center'>  <a href='delete.php?eliminar={$id}' class='btn btn-danger'> <i class='bi bi-trash'></i>  </a> </td>";
+          echo " </tr> ";
+        }
+        ?>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-                  while($row = mysqli_fetch_assoc($vista_incidencias))
-                  {
-                    $id = $row['id'];                
-                    $planta = $row['planta'];        
-                    $aula = $row['aula'];         
-                    $descripcion = $row['descripcion'];        
-                    $fecha_alta = $row['fecha_alta'];        
-                    $fecha_revision = $row['fecha_revision'];        
-                    $fecha_resolucion = $row['fecha_resolucion'];        
-                    $comentario = $row['comentario'];
-
-                        echo "<tr >";
-                        echo " <td >{$id}</td>";
-                        echo " <td > {$planta}</td>";
-                        echo " <td > {$aula}</td>";
-                        echo " <td >{$descripcion} </td>"; 
-                        echo " <td >{$fecha_alta} </td>";
-                        echo " <td >{$fecha_revision} </td>";
-                        echo " <td >{$fecha_resolucion} </td>";
-                        echo " <td >{$comentario} </td>";
-                        echo " </tr> ";
-                  }
-                }
-            ?>
-          </tr>  
-        </tbody>
-    </table>
-  </div>
-
-  <style>
+<style>
   body {
     display: block;
     justify-content: center;
@@ -207,4 +204,34 @@
     border-width: 0;
     padding: 10px;
   }
-<?php include "../footer.php"?>
+
+
+  /*------------------Boton VOLVER------------------- */
+  .mt-5 a {
+    /* margin-top: 3rem!important; */
+    border: 0px;
+    background-color: #b2bfcf;
+    box-shadow: 20px 30px 50px rgba(1, 1, 1, 0.5);
+  }
+
+  /*------------OPERACIONES----------------*/
+  .btn-primary {
+    color: #fff;
+    background-color: #b2bfcf;
+    border: 0px;
+  }
+
+  .btn-secondary {
+    color: #fff;
+    background-color: #b2bfcf;
+    border: 0px;
+  }
+
+  .btn-danger {
+    color: #fff;
+    background-color: #b2bfcf;
+    border: 0px;
+  }
+</style>
+
+<?php include "../footer.php" ?>
