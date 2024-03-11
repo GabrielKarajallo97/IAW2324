@@ -26,11 +26,7 @@ if (isset($_POST['crear'])) {
     echo "<script type='text/javascript'>alert('¡Incidencia añadida con éxito!')</script>";
   }
 }
-if ($_SESSION['user']) {
 
-} else {
-  header("location: ../index.php");
-}
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
