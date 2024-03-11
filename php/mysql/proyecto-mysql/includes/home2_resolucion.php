@@ -10,6 +10,24 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'profesor' ){
 } 
 
 ?>
+<header>
+<?php
+setlocale(LC_TIME, 'es_ES.UTF-8');
+$usuario = $_SESSION['user'];
+$sql_select = "SELECT ultima_sesion FROM usuarios WHERE username= '$usuario'";
+$result = $conn->query($sql_select);
+if ($result->num_rows > 0) {
+  // Mostrar la última sesión
+  while ($row = $result->fetch_assoc()) {
+    $ultima_sesion = strtotime($row["ultima_sesion"]);
+    $timestamp = $ultima_sesion + (5 * 3600);
+    $fecha_formato = strftime('%e de %B de %Y a las %H:%M', $timestamp);
+  }
+}
+?>
+    <p class="cabecera">Conectado como: <?php echo $_SESSION["user"];?> como  <?php echo $_SESSION["perfil"];?></p>
+    <p class="cabecera">Última sesión iniciada: <?php echo $fecha_formato; ?></p>
+</header>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <?php

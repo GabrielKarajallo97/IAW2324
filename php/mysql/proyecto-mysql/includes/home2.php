@@ -9,7 +9,24 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'profesor' ){
   header("location: ../index.php");
 }
 ?>
-
+<header>
+<?php
+setlocale(LC_TIME, 'es_ES.UTF-8');
+$usuario = $_SESSION['user'];
+$sql_select = "SELECT ultima_sesion FROM usuarios WHERE username= '$usuario'";
+$result = $conn->query($sql_select);
+if ($result->num_rows > 0) {
+  // Mostrar la última sesión
+  while ($row = $result->fetch_assoc()) {
+    $ultima_sesion = strtotime($row["ultima_sesion"]);
+    $timestamp = $ultima_sesion + (5 * 3600);
+    $fecha_formato = strftime('%e de %B de %Y a las %H:%M', $timestamp);
+  }
+}
+?>
+    <p class="cabecera">Conectado como: <?php echo $_SESSION["user"];?> como  <?php echo $_SESSION["perfil"];?></p>
+    <p class="cabecera">Última sesión iniciada: <?php echo $fecha_formato; ?></p>
+</header>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
   <?php
@@ -148,23 +165,24 @@ if (isset($_SESSION['user']) && $_SESSION['perfil'] === 'profesor' ){
 
       /*----------NAV--------------------*/
       nav {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+    position: absolute;
+    left: 50%;
+    margin-top: 50px;
+    transform: translate(-50%, -50%);
+  }
 
-      .navbar {
-        position: absolute;
-        top: 5%;
-        
-        width: 100%;
-      }
+  .navbar {
+    position: absolute;
+    top: 5%;
 
-      .nav-item a {
-        border: 0px;
-        color: #fff;
-        margin-right: 10px;
-      }
+    width: 100%;
+  }
+
+  .nav-item a {
+    border: 0px;
+    color: #fff;
+    margin-right: 10px;
+  }
 
       /*------Tabla--------*/
       .nombre-tabla {

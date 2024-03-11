@@ -11,16 +11,13 @@ if ($result->num_rows > 0) {
         $fecha_formato = strftime('%e de %B de %Y a las %H:%M' , $timestamp);
     }
 }
-        //MOSTRAR LA IP
-        $ip = $_SERVER['REMOTE_ADDR'];
 ?>
 
 <footer class="blockquote-footer fixed-bottom">
 <div class="footer">
     <p>Gestión de incidencias del <a class="text-center" href="https://iesamachado.org" target="_blank">IES Antonio Machado</a>. Desarrollado por Gabriel Karajallo</p>
-    <p>Conectado como: <?php echo $_SESSION["user"];?></p>
+    <p>Conectado como: <?php echo $_SESSION["user"];?> como  <?php echo $_SESSION["perfil"];?></p>
     <p>Última sesión iniciada: <?php echo $fecha_formato; ?></p>
-    <p>Dirección IP: <?php  echo $ip; ?></p>
 </div>    
 </footer>
 
