@@ -20,9 +20,6 @@ function eventListeners(){
     })
 }
 
-
-
-
 //funciones
 function agregarTweet(e){
     e.preventDefault();
